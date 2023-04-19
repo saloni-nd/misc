@@ -23,14 +23,17 @@ mortality$Total <- as.numeric(mortality$Total)
 mortality_g <- gather(mortality, "Demographic", "Rate", 3:5)
 mortality_g_total <- filter(mortality_g, Demographic == "Total")
 
+# Set colour scale - 10 colours from red to blue
 cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=10))
 
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
+# Remove hash to add smoothed line
   #geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
   geom_point(aes(fill=Year),size=0.2) +
   coord_cartesian(xlim=c(0,110), ylim=c(0,1)) +
   theme_classic() +
+# Replace with values for any lines you want to add to the chart
   #geom_vline(xintercept=90, linetype="dashed", color="grey") +
   #geom_hline(yintercept=0.22, linetype="dashed", color="grey") +
   #geom_hline(yintercept=0.35, linetype="dashed", color="grey") +
