@@ -9,7 +9,8 @@ print(sessionInfo())
 
 # Data source:
 # Table 3 from Gomes, M., Begum, R., Sati, P., Dikshit, R., Gupta, P. C., Kumar, R., Sheth, J., Habib, A., & Jha, P. (2017). Nationwide Mortality Studies To Quantify Causes Of Death: Relevant Lessons From India’s Million Death Study. Health Affairs, 36(11), 1887–1895. https://doi.org/10.1377/hlthaff.2017.0635
- https://www.healthaffairs.org/doi/10.1377/hlthaff.2017.0635
+# https://www.healthaffairs.org/doi/10.1377/hlthaff.2017.0635
+# Save as an xlsx file
 
 # Import xlsx spreadsheet
 file_path <- # Replace with path to file
