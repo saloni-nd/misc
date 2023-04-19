@@ -19,7 +19,7 @@ mortality$Female <- as.numeric(mortality$Female)
 mortality$Male <- as.numeric(mortality$Male)
 mortality$Total <- as.numeric(mortality$Total)
 
-# Wrangle
+# Gather to make it long format and get only values for total
 mortality_g <- gather(mortality, "Demographic", "Rate", 3:5)
 mortality_g_total <- filter(mortality_g, Demographic == "Total")
 
