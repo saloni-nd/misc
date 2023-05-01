@@ -45,7 +45,8 @@ cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colour
 
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
-  # Remove hash to show points
+  # Choose line or smoothed line or points
+  geom_line(aes(fill=Year),alpha=0.5) +
   geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
   #geom_point(aes(fill=Year),size=0.2) +
   # Limit to 95 because ages above 100 are noisy and go above 100%
