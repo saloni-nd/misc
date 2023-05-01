@@ -8,6 +8,7 @@ library(viridis)
 # Choose countries, then go to Period data > Death Rates > 1x10
 # Download and replace this with path to folder
 data_folder <- ""
+# set filename to Mx_1x10_(name of country).txt
 
 countries <- c("UK", "Italy", "Taiwan")
 mortality <- list()
