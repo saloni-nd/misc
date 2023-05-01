@@ -4,13 +4,15 @@ library(scales)
 library(viridis)
 
 # Data source:
-# https://www.mortality.org/Country/Country?cntr=GBR_NP
-# Period data > Death Rates > 1x10
+# https://www.mortality.org/
+# Choose countries, then go to Period data > Death Rates > 1x10
+# Download and replace this with path to folder
 data_folder <- ""
 
 countries <- c("UK", "Italy", "Taiwan")
 mortality <- list()
 
+# Import data
 for (country in countries) {
   
   # Import and rename cols
@@ -22,6 +24,7 @@ for (country in countries) {
   
 }
 
+# Join into single df
 mortality <- do.call(rbind.data.frame, mortality)
 
 # Reformat
@@ -34,14 +37,15 @@ mortality$Total <- as.numeric(mortality$Total)
 mortality_g <- gather(mortality, "Demographic", "Rate", 3:5)
 mortality_g_total <- filter(mortality_g, Demographic == "Total")
 
+# Get number of time periods shown for colour scale
 n_colours <- nrow(count(mortality_g_total, Year))
 
-# Set colour scale - 10 colours from red to blue
+# Set colour scale - n colours from red to blue
 cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colours))
 
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
-  # Remove hash to add smoothed line
+  # Remove hash to show points
   geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
   #geom_point(aes(fill=Year),size=0.2) +
   #coord_cartesian(xlim=c(0,110), ylim=c(0,1)) +
