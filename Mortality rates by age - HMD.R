@@ -48,7 +48,8 @@ ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   # Remove hash to show points
   geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
   #geom_point(aes(fill=Year),size=0.2) +
-  #coord_cartesian(xlim=c(0,110), ylim=c(0,1)) +
+  # Limit to 95 because ages above 100 are noisy and go above 100%
+  coord_cartesian(xlim=c(0,95)) +
   facet_grid(cols=vars(Country)) +
   theme_classic() +
   theme(strip.background = element_blank()) +
