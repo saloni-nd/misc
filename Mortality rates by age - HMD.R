@@ -6,7 +6,7 @@ library(viridis)
 # Data source:
 # https://www.mortality.org/Country/Country?cntr=GBR_NP
 # Period data > Death Rates > 1x10
-data_folder <- "/Users/saloni/Documents/R_stuff/R_data/"
+data_folder <- ""
 
 countries <- c("UK", "Italy", "Taiwan")
 mortality <- list()
