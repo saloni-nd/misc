@@ -59,7 +59,7 @@ ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   scale_x_continuous(breaks = seq(0, 100, by=10)) +
   scale_y_continuous(labels = scales::percent, trans='log2', breaks = c(0.0001, 0.001, 0.01, 0.1, 1)) +
   scale_colour_manual(values=cc) +
-  labs(title = "Annual death rate in the United Kingdom by age", 
+  labs(title = "Annual death rate by age", 
        y = "Death rate", 
        x = "Age",
        caption = "Period death rates.\nSource: Human Mortality Database. Max Planck Institute for Demographic Research (Germany),\nUniversity of California, Berkeley (USA), and French Institute for Demographic Studies (France).\nAvailable at www.mortality.org (data downloaded on [1 May 2023])\nChart by Saloni Dattani.") 
