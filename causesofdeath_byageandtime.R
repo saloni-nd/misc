@@ -165,11 +165,11 @@ plot_mortality_rates <-
                                         100000))),
             data = filter(cod10, sex == "total")) +
   # Lexis surface outline
-  #  geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
-  #                   z = mx),
-  #                   linetype="solid", color="black", size=0.2,
-  #                   breaks = c(1,10,100,1000,10000,100000), 
-  #               data = filter(cod10, sex == "total")) +
+    geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
+                     z = mx),
+                     linetype="dashed", color="black", size=0.2,
+                     breaks = c(1,10,100,1000,10000,100000), 
+                 data = filter(cod10, sex == "total")) +
   
   #  geom_textcontour((aes(x = year+0.5, 
   #                        y = age_start+age_width/2,
