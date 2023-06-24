@@ -145,35 +145,57 @@ cod10 <- read_csv(paste0(path,"cod10.csv"))
 # Plot Mortality rates ----------------------------------------------------
 
 
+# Add color palette for 15 intervals
+colourCount = 15
+getPalette = colorRampPalette(brewer.pal(8, "PuBuGn"))
+# Change Total to say All causes
+cod10$cod[cod10$cod == "Total"] <- "All causes"
+
+
 plot_mortality_rates <-
   ggplot() +
   # Lexis surface heatmap
   geom_tile(aes(x = year+0.5, y = age_start+age_width/2,
                 width = 1, height = age_width,
-                fill = cut(mx, breaks=c(1,10,100,1000,10000,100000))),
+                fill = cut(mx, breaks=c(1,2,5,
+                                        10,20,50,
+                                        100,200,500,
+                                        1000,2000,5000,
+                                        10000,20000,50000,
+                                        100000))),
             data = filter(cod10, sex == "total")) +
   # Lexis surface outline
-#  geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
-#                   z = mx),
-#                   linetype="solid", color="black", size=0.2,
-#                   breaks = c(1,10,100,1000,10000,100000), 
-#               data = filter(cod10, sex == "total")) +
-
-#  geom_textcontour((aes(x = year+0.5, 
-#                        y = age_start+age_width/2,
-#                        z = mx)),
-#    data = filter(cod10, sex == "total"), 
+  #  geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
+  #                   z = mx),
+  #                   linetype="solid", color="black", size=0.2,
+  #                   breaks = c(1,10,100,1000,10000,100000), 
+  #               data = filter(cod10, sex == "total")) +
+  
+  #  geom_textcontour((aes(x = year+0.5, 
+  #                        y = age_start+age_width/2,
+  #                        z = mx)),
+  #    data = filter(cod10, sex == "total"), 
 #    breaks = 10^(1:10),
 #    size = 2.5, straight = TRUE, text_only = T) +
-  
-  scale_fill_brewer(type = "seq", palette = "PuBuGn", 
-                    guide = guide_legend(reverse = TRUE),
-                    na.value = "#fff7fb",
-                    labels = c("1 - 10", 
-                               "10 - 100", 
-                               "100 - 1,000", 
-                               "1,000 - 10,000",
-                               "10,000 - 100,000")) +
+
+scale_fill_manual(values = getPalette(colourCount),
+                  guide = guide_legend(reverse = TRUE),
+                  na.value = "#fff7fb",
+                  labels = c("1-2", 
+                             "2-5",
+                             "5-10",
+                             "10-20",
+                             "20-50",
+                             "50-100",
+                             "100-200",
+                             "200-500",
+                             "500-1,000",
+                             "1,000-2,000",
+                             "2,000-5,000",
+                             "5,000-10,000",
+                             "10,000-20,000",
+                             "20,000-50,000",
+                             "50,000-100,000")) +
   scale_x_continuous("Year", expand = c(0.02, 0),
                      breaks = seq(1940, 2000, 20)) +
   scale_y_continuous("Age", expand = c(0, 0),
@@ -187,7 +209,7 @@ plot_mortality_rates <-
              alpha = 0.2, lty = "dotted") +
   geom_abline(intercept = seq(-100, 100, 20)-1940,
               alpha = 0.2, lty = "dotted") +
-
+  
   coord_equal(ylim=c(0,100)) +
   # theme
   theme_minimal() +
@@ -199,7 +221,7 @@ plot_mortality_rates <-
     panel.margin = unit(0.3, "cm")
   ) +
   labs(title = "How do causes of death vary with age and over time?",
-       subtitle = "Shown are the annual number of deaths per 100,000 people in the population in France.",
+       subtitle = "Shown are the annual number of deaths per 100,000 people in each age group in France.",
        caption = "Adapted from Jonas Schoëley and Frans Willekens (2017)",
        fill = "Mortality rate",
        x="",
@@ -207,3 +229,5 @@ plot_mortality_rates <-
 
 ggsave(paste0(path,"mortality_bycause.pdf"), plot_mortality_rates,
        width = 13, height = 8)
+
+
