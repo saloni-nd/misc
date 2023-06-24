@@ -63,20 +63,8 @@ read_csv(paste0(path, "ined-cod-fra-1925-1999-rates.csv"), skip  = 19) %>%
   # convert counts to cause specific shares on total deaths
   group_by(year, age, sex) %>%
   select(year, age, age_start, age_width, sex, cod, mx) %>%
-  mutate(px = mx / mx[cod == "Total"]) %>% ungroup() %>%
-  # filter to relevant data:
-  # a dataset of death proportions by cause of death over period, sex & age
-  filter(cod != "Total") %>% droplevels() -> cod_prop
+  mutate(px = mx / mx[cod == "Total"]) %>% ungroup() -> cod_prop
 
-# The deaths by cause don't sum up to the number of deaths in the
-# "Total" category. Therefore the proportions don't add up to unity.
-# The "leftover" proportion gets assigned the cause of death "Other".
-cod_prop %>%
-  group_by(year, age, age_start, age_width, sex) %>%
-  summarise(cod = "Other", px = 1 - sum(px)) %>%
-  bind_rows(select(cod_prop, -px), .) %>%
-  ungroup() %>%
-  arrange(year, age, sex) -> cod_prop
 
 # 10 Causes of Death ------------------------------------------------------
 
@@ -84,7 +72,7 @@ cod_prop %>%
 # deaths. Aggregate the "leftovers" in category "Other".
 
 # a vector of cods we are interested in
-lab_cod_10 <- cbook_cod$short[c(2, 3, 4, 7, 9, 10, 18, 19)]
+lab_cod_10 <- cbook_cod$short[c(2, 3, 1, 7, 9, 10, 18, 19)]
 cod_prop %>%
   # filter to the cods we are interested in
   filter(cod %in% lab_cod_10) %>%
