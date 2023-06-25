@@ -1,0 +1,62 @@
+﻿Name,Year,Organism,Inventor,Comments and citation
+Smallpox,1798,Virus,Edward Jenner,"1796 was first test, but findings were published 2 years later. Dr. Benjamin Waterhouse gives the smallpox vaccine to his son and other family members. These smallpox vaccinations are the first in the U.S."
+Rabies,1885,Virus,Louis Pasteur,The first rabies vaccine was introduced in 1885 and was followed by an improved version in 1908.
+Typhoid,1896,Bacteria,Almroth Wright or Richard Pfeiffer,
+Cholera,1892,Bacteria,Waldemar Haffkine,
+Cholera,2016,Bacteria,,
+Diphtheria,1914,Bacteria,Emil von Behring or William Hallock Park,Mixtures of diphtheria toxin and antitoxin https://link.springer.com/chapter/10.1007/978-94-007-7624-1_1
+Diphtheria,1926,Bacteria,,Alum-precipitated diphtheria toxoid
+Pertussis,1914,Bacteria,,Whole cell vaccine https://www.tandfonline.com/doi/full/10.4161/hv.29576 
+Pertussis,1939,Bacteria,"Pearl Kendrick, Grace Eldering and Loney Gordon",
+DTP,1948,Bacteria,"Pearl Kendrick, Loney Gordon and Grace Eldering",
+Tetanus,1890,Bacteria,Emil von Behring,
+Tetanus,1938,Bacteria,,Adsorbed tetanus toxoid https://www.futuremedicine.com/doi/10.2217/fmb-2021-0167
+Tuberculosis,1928,Bacteria,Albert Calmette and Camille Guérin,BCG was adopted by the Health Committee of the League of Nations
+Yellow fever,1938,Virus,Max Theiler,
+Influenza,1945,Virus,,Bivalent A and B vaccine available to general population in US https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5139605/
+Polio,1955,Virus,Jonas Salk,IPV
+Polio,1960,Virus,Albert Sabin,OPV
+Measles,1963,Virus,John Franklin Enders,
+Mumps,1967,Virus,Maurice Hilleman,
+Rubella,1969,Virus,Merck,
+MMR,1971,Virus,Maurice Hilleman,
+Influenza,1947,Virus,,H2N2 pandemic influenza
+Influenza,1968,Virus,,Trivalent inactivated vaccines
+Influenza,1977,Virus,,Subunit vaccine
+Meningitis (CSMa),1973,Bacteria,,
+Meningitis (ACWY),1981,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6733771/ and https://www.sciencedirect.com/science/article/pii/S1369848617301735
+Pneumococcal pneumonia,1977,Bacteria,,Polysaccharide vaccine that targets 14 strains https://www.cdc.gov/vaccines/pubs/pinkbook/pneumo.html
+Pneumococcal pneumonia,1983,Bacteria,Merck,Pneumovax23
+DTaP,1991,Bacteria,,"Diphtheria, tetanus, acellular pertussis"
+Hepatitis B,1981,Virus,,https://www.cdc.gov/vaccines/pubs/pinkbook/hepb.html
+Hepatitis B,1986,Virus,,
+Hepatitis B,2017,Virus,,Heplisav-B vaccine
+Haemophilus influenzae b,1985,Bacteria,,
+Japanese encephalitis,1954,Virus,BIKEN Foundation,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7660131/
+Tick borne encephalitis,1976,Virus,Christian Kunz and Baxter,https://www.sciencedirect.com/science/article/pii/S0264410X02008149 
+Hepatitis A,1995,Virus,Maurice Hilleman,Vaqta vaccine https://www.cdc.gov/vaccines/pubs/pinkbook/hepa.html
+Hepatitis A,1991,Virus,,Havrix vaccine
+Hepatitis A,2001,Virus,,
+Varicella,1986,Virus,,First approved in Japan https://academic.oup.com/jid/article/197/Supplement_2/S185/845728 
+Rotavirus*,1998,Virus,,Withdrawn in 1999
+Lyme*,1998,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2870557/ 
+Meningitis C,1999,Bacteria,,
+Pneumococcal pneumonia,2000,Bacteria,,Pneumococcal conjugate vaccine
+Influenza,2003,Virus,,"intranasally administered live attenuated vaccine, called FluMist"
+Influenza,2007,Virus,,A/H5N1 vaccine? in response to 2003-04 flu season in Asia
+Rotavirus,2006,Virus,GlaxoSmithKline and Merck (two the same year),
+HPV,2006,Virus,Ian Frazer and Jian Zhou,
+Zoster,2006,Virus,,Zostavax
+Meningitis B,2013,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6477034/ 
+Dengue,2015,Virus,,
+Zoster,2017,Virus,,Shingrix
+Influenza,2009,Virus,,Swine flu pandemic influenza
+Malaria,2021,Parasite,,"RTS,S"
+Malaria,2023,Parasite,,R21
+Ebola,2019,Virus,,https://www.who.int/news-room/questions-and-answers/item/ebola-vaccines
+Ebola,2020,Virus,,
+RSV,2023,Virus,,
+Covid-19,2020,Virus,,
+Covid-19,2021,Virus,,
+Covid-19,2022,Virus,,
+Mpox,2019,Virus,,https://www.fda.gov/news-events/press-announcements/monkeypox-update-fda-authorizes-emergency-use-jynneos-vaccine-increase-vaccine-supply
