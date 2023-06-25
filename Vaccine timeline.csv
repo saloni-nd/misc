@@ -1,6 +1,7 @@
 ﻿Name,Year,Organism,Inventor,Comments and citation
 Smallpox,1798,Virus,Edward Jenner,"1796 was first test, but findings were published 2 years later. Dr. Benjamin Waterhouse gives the smallpox vaccine to his son and other family members. These smallpox vaccinations are the first in the U.S."
 Rabies,1885,Virus,Louis Pasteur,The first rabies vaccine was introduced in 1885 and was followed by an improved version in 1908.
+Rabies,1908,Virus
 Typhoid,1896,Bacteria,Almroth Wright or Richard Pfeiffer,
 Cholera,1892,Bacteria,Waldemar Haffkine,
 Cholera,2016,Bacteria,,
@@ -25,15 +26,15 @@ Influenza,1968,Virus,,Trivalent inactivated vaccines
 Influenza,1977,Virus,,Subunit vaccine
 Meningitis (CSMa),1973,Bacteria,,
 Meningitis (ACWY),1981,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6733771/ and https://www.sciencedirect.com/science/article/pii/S1369848617301735
-Pneumococcal pneumonia,1977,Bacteria,,Polysaccharide vaccine that targets 14 strains https://www.cdc.gov/vaccines/pubs/pinkbook/pneumo.html
-Pneumococcal pneumonia,1983,Bacteria,Merck,Pneumovax23
+Pneumococcal disease,1977,Bacteria,,Polysaccharide vaccine that targets 14 strains https://www.cdc.gov/vaccines/pubs/pinkbook/pneumo.html
+Pneumococcal disease,1983,Bacteria,Merck,Pneumovax23
 DTaP,1991,Bacteria,,"Diphtheria, tetanus, acellular pertussis"
 Hepatitis B,1981,Virus,,https://www.cdc.gov/vaccines/pubs/pinkbook/hepb.html
 Hepatitis B,1986,Virus,,
 Hepatitis B,2017,Virus,,Heplisav-B vaccine
 Haemophilus influenzae b,1985,Bacteria,,
 Japanese encephalitis,1954,Virus,BIKEN Foundation,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7660131/
-Tick borne encephalitis,1976,Virus,Christian Kunz and Baxter,https://www.sciencedirect.com/science/article/pii/S0264410X02008149 
+Tick-borne encephalitis,1976,Virus,Christian Kunz and Baxter,https://www.sciencedirect.com/science/article/pii/S0264410X02008149 
 Hepatitis A,1995,Virus,Maurice Hilleman,Vaqta vaccine https://www.cdc.gov/vaccines/pubs/pinkbook/hepa.html
 Hepatitis A,1991,Virus,,Havrix vaccine
 Hepatitis A,2001,Virus,,
@@ -41,7 +42,7 @@ Varicella,1986,Virus,,First approved in Japan https://academic.oup.com/jid/artic
 Rotavirus*,1998,Virus,,Withdrawn in 1999
 Lyme*,1998,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2870557/ 
 Meningitis C,1999,Bacteria,,
-Pneumococcal pneumonia,2000,Bacteria,,Pneumococcal conjugate vaccine
+Pneumococcal disease,2000,Bacteria,,Pneumococcal conjugate vaccine
 Influenza,2003,Virus,,"intranasally administered live attenuated vaccine, called FluMist"
 Influenza,2007,Virus,,A/H5N1 vaccine? in response to 2003-04 flu season in Asia
 Rotavirus,2006,Virus,GlaxoSmithKline and Merck (two the same year),
