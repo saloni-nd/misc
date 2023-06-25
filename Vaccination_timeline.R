@@ -33,21 +33,22 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
   scale_color_manual(values=group.colors) +
  # geom_text_repel(force=0.5, nudge_x=0.2) +
   theme_classic() +
-  scale_x_continuous(breaks= seq(1790,2030,by=10), 
-                     labels = c("", 1800, rep("",4), 
+  scale_x_continuous(breaks= seq(1770,2030,by=10), 
+                     labels = c(rep("",3), 1800, rep("",4), 
                                 1850, rep("",4), 
                                 1900, rep("",4),
                                 1950, rep("",4),
                                 2000, rep("",3))) +
   theme(axis.text.y=element_blank(),
         plot.title = element_text(size = 20)) +
-  labs(title="Timeline of vaccines",
-       subtitle="The year when each vaccine was approved for the first time.\nSubsequent vaccines for the same disease are shown on the same row.",
+  labs(title="Progress in vaccine technology",
+       subtitle="The year when each vaccine was licensed for the first time.\nSubsequent vaccines for the same pathogen or disease are shown on the same row.",
        x="",
        y="",
+       caption="Chart by Saloni Dattani",
        color="Target organism") +
   coord_cartesian(xlim=c(1770,2025))
   
-ggsave(paste0(file_path, "Vaccine_timeline.svg"))
+ggsave(paste0(file_path, "Vaccine_timeline.svg"),height=8,width=10)
   
   
