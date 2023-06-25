@@ -24,13 +24,21 @@ group.colors <- c(Bacteria = "#38AABA",
                   Virus = "#BC8E5A", 
                   Parasite ="#970046")
 
+
 ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
   geom_point(aes(color=Organism), size=2, stroke=1) +
   geom_point(colour="black", pch=21, size=2.5) +
   # Show text only for first vaccine
   geom_text(hjust=1, nudge_x=-4, data=filter(vax,First==1), size=3) + 
   scale_color_manual(values=group.colors) +
+ # geom_text_repel(force=0.5, nudge_x=0.2) +
   theme_classic() +
+  scale_x_continuous(breaks= seq(1790,2030,by=10), 
+                     labels = c("", 1800, rep("",4), 
+                                1850, rep("",4), 
+                                1900, rep("",4),
+                                1950, rep("",4),
+                                2000, rep("",3))) +
   theme(axis.text.y=element_blank(),
         plot.title = element_text(size = 20)) +
   labs(title="Timeline of vaccines",
@@ -41,4 +49,5 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
   coord_cartesian(xlim=c(1770,2025))
   
 ggsave(paste0(file_path, "Vaccine_timeline.svg"))
+  
   
