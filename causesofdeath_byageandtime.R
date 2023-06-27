@@ -36,6 +36,7 @@ library(scales)
 
 path <- "./demographic-research.36-21/data/"
 
+
 # icd-9 codes and labels
 cbook_cod <- read_csv(paste0(path, "cod_names.csv"), skip = 13)
 
@@ -64,9 +65,9 @@ read_csv(paste0(path, "ined-cod-fra-1925-1999-rates.csv"), skip  = 19) %>%
   group_by(year, age, sex) %>%
   select(year, age, age_start, age_width, sex, cod, mx) %>%
   mutate(px = mx / mx[cod == "Total"]) %>% ungroup() -> cod_prop #%>%
-  # filter to relevant data:
-  # a dataset of death proportions by cause of death over period, sex & age
-  #filter(cod != "Total") %>% droplevels() -> cod_prop
+# filter to relevant data:
+# a dataset of death proportions by cause of death over period, sex & age
+#filter(cod != "Total") %>% droplevels() -> cod_prop
 
 # The deaths by cause don't sum up to the number of deaths in the
 # "Total" category. Therefore the proportions don't add up to unity.
@@ -84,7 +85,12 @@ cod_prop %>%
 # deaths. Aggregate the "leftovers" in category "Other".
 
 # a vector of cods we are interested in
-lab_cod_10 <- cbook_cod$short[c(2, 3, 1, 7, 9, 10, 18, 19)]
+lab_cod_10 <- cbook_cod$short[c(2, # Infectious and parasitic diseases - Codes 001*-139*
+                                3, # Neoplasms - Codes 140*-239*
+                                1, # Total causes - Codes 000*-999*
+                                10, # Diseases of the respiratory system - Codes 460*-519*
+                                18, # Symptoms, signs and ill-defined conditions - Codes 780*-799*
+                                19)] # Injury and poisoning - Codes 800*-999*
 cod_prop %>%
   # filter to the cods we are interested in
   filter(cod %in% lab_cod_10) %>%
@@ -134,6 +140,7 @@ library(rgeos)
 library(raster)
 library(dplyr)
 library(ggplot2)
+library(RColorBrewer)
 
 # Data --------------------------------------------------------------------
 
@@ -144,13 +151,25 @@ cod10 <- read_csv(paste0(path,"cod10.csv"))
 
 # Plot Mortality rates ----------------------------------------------------
 
-
 # Add color palette for 15 intervals
 colourCount = 15
 getPalette = colorRampPalette(brewer.pal(8, "PuBuGn"))
 # Change Total to say All causes
+# Neoplasms to say Cancers
+# External to say External causes
 cod10$cod[cod10$cod == "Total"] <- "All causes"
+cod10$cod[cod10$cod == "Neoplasms"] <- "Cancers"
+cod10$cod[cod10$cod == "External"] <- "External causes"
 
+cod10 <- cod10 %>%
+            mutate(cod = factor(cod)) %>% 
+            mutate(cod = fct_relevel(cod, 
+                                     c("All causes", 
+                                       "External causes", 
+                                       "Cancers", 
+                                       "Infections",
+                                       "Respiratory diseases",
+                                       "Ill-defined")))
 
 plot_mortality_rates <-
   ggplot() +
@@ -165,11 +184,11 @@ plot_mortality_rates <-
                                         100000))),
             data = filter(cod10, sex == "total")) +
   # Lexis surface outline
-    geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
-                     z = mx),
-                     linetype="dashed", color="black", size=0.2,
-                     breaks = c(1,10,100,1000,10000,100000), 
-                 data = filter(cod10, sex == "total")) +
+  #  geom_contour(aes(x = year+0.5, y = age_start+age_width/2,
+  #                   z = mx),
+  #                   linetype="dashed", color="#016450", size=0.2,
+  #                   breaks = c(1,10,100,1000,10000,100000), 
+  #               data = filter(cod10, sex == "total")) +
   
   #  geom_textcontour((aes(x = year+0.5, 
   #                        y = age_start+age_width/2,
@@ -201,7 +220,7 @@ scale_fill_manual(values = getPalette(colourCount),
   scale_y_continuous("Age", expand = c(0, 0),
                      breaks = seq(0, 100, 20)) +
   # Facet
-  facet_wrap(~ cod, ncol = 4, as.table = TRUE) +
+  facet_wrap(~ cod, ncol = 3, as.table = TRUE) +
   # Lexis grid
   geom_hline(yintercept = seq(20, 100, 20),
              alpha = 0.2, lty = "dotted") +
@@ -218,16 +237,18 @@ scale_fill_manual(values = getPalette(colourCount),
     #axis.text.y = element_text(),
     #axis.text.x = element_text(),
     strip.text.x = element_text(size = 12),
-    panel.margin = unit(0.3, "cm")
+    panel.margin = unit(0.3, "cm"),
+    plot.title = element_text(size = 20)
   ) +
-  labs(title = "How do causes of death vary with age and over time?",
+  labs(title = "Causes of death vary by age and have changed over time",
        subtitle = "Shown are the annual number of deaths per 100,000 people in each age group in France.",
        caption = "Adapted from Jonas Schoëley and Frans Willekens (2017)",
        fill = "Mortality rate",
        x="",
        y="Age")
 
-ggsave(paste0(path,"mortality_bycause.pdf"), plot_mortality_rates,
+ggsave(paste0(path,"mortality_bycause.svg"), plot_mortality_rates,
        width = 13, height = 8)
+
 
 
