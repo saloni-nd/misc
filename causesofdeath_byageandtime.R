@@ -240,7 +240,7 @@ scale_fill_manual(values = getPalette(colourCount),
     panel.margin = unit(0.3, "cm"),
     plot.title = element_text(size = 20)
   ) +
-  labs(title = "Causes of death vary by age and have changed over time",
+  labs(title = "Causes of death have changed over time and vary by age",
        subtitle = "Shown are the annual number of deaths per 100,000 people in each age group in France.",
        caption = "Adapted from Jonas Schoëley and Frans Willekens (2017)",
        fill = "Mortality rate",
