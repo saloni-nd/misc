@@ -63,7 +63,7 @@ read_csv(paste0(path, "ined-cod-fra-1925-1999-rates.csv"), skip  = 19) %>%
   ) %>% ungroup() %>%
   # convert counts to cause specific shares on total deaths
   group_by(year, age, sex) %>%
-  select(year, age, age_start, age_width, sex, cod, mx) %>%
+  dplyr::select(year, age, age_start, age_width, sex, cod, mx) %>%
   mutate(px = mx / mx[cod == "Total"]) %>% ungroup() -> cod_prop #%>%
 # filter to relevant data:
 # a dataset of death proportions by cause of death over period, sex & age
@@ -75,7 +75,7 @@ read_csv(paste0(path, "ined-cod-fra-1925-1999-rates.csv"), skip  = 19) %>%
 cod_prop %>%
   group_by(year, age, age_start, age_width, sex) %>%
   summarise(cod = "Other", px = 1 - sum(px)) %>%
-  bind_rows(select(cod_prop, -px), .) %>%
+  bind_rows(dplyr::select(cod_prop, -px), .) %>%
   ungroup() %>%
   arrange(year, age, sex) -> cod_prop
 
@@ -112,7 +112,7 @@ write_csv(mutate(cod_prop10, mx = sprintf("%1.5f", mx)), path = paste0(path,"cod
 
 read_csv(paste0(path,"ined-cod-fra-1925-1999-rates.csv"), skip = 19) %>%
   filter(age != "total", cod == "000*-999*") %>%
-  select(-cod) %>%
+  dplyr::select(-cod) %>%
   # apply factors
   mutate(
     age = factor(age, levels = lev_age, ordered = TRUE)
