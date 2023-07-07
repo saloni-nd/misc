@@ -1,4 +1,4 @@
-This dataset shows when each vaccine was introduced for the first time worldwide.
+This dataset shows when each vaccine was introduced for humans, for the first time.
 - For each, I've tried to track down the year, with a citation.
 - I've also listed the name of the inventor when they were mentioned incidentally, but several are missing.
 
