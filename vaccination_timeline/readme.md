@@ -9,4 +9,4 @@ It also shows new versions of each vaccine were made available.
 
 The script turns the dataset into a chart on R.
 
-If you'd like to add to this dataset, get in touch :)
+If you'd like to add to this dataset, get in touch here or by email (saloni@ourworldindata.org) :)
