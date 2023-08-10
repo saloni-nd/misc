@@ -23,7 +23,7 @@ cases_long <- cases_long %>%
 # Create World aggregate
 cases_world <- cases_long %>%
                 group_by(Month) %>%
-                summarise(Cases = sum(Cases)) %>%
+                summarise(Cases = sum(Cases)) %>% # sum the number of cases across countries
                 mutate(Country = "World")
 
 cases_long <- bind_rows(cases_long, cases_world)
@@ -42,7 +42,7 @@ cases1 <- cases_deaths %>%
 # Create World aggregate
 cases_world <- cases_deaths %>%
                 group_by(Date_reported) %>%
-                summarise(N_cases = sum()) %>% # sum the number of cases
+                summarise(N_cases = n()) %>% # count the number of cases, since they are all listed individually
                 mutate(Country = "World")
 
 cases1_long <- bind_rows(cases1, cases_world)
@@ -52,7 +52,6 @@ deaths1 <- cases_deaths %>%
   filter(Outcome == "Fatal") %>%
   group_by(Country, Date_reported) %>%
   summarise(N_deaths = n())
-
 # Create World aggregate
 deaths_world <- cases_deaths %>%
   filter(Outcome == "Fatal") %>%
