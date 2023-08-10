@@ -23,7 +23,7 @@ cases_long <- cases_long %>%
 # Create World aggregate
 cases_world <- cases_long %>%
                 group_by(Month) %>%
-                summarise(Cases = n()) %>%
+                summarise(Cases = sum(Cases)) %>%
                 mutate(Country = "World")
 
 cases_long <- bind_rows(cases_long, cases_world)
@@ -39,11 +39,10 @@ cases_deaths <- read.xlsx(xlsxFile = paste0(path, "H5N1_list_2006_2014.xlsx"),
 cases1 <- cases_deaths %>%
   group_by(Country, Date_reported) %>%
   summarise(N_cases = n())
-
 # Create World aggregate
 cases_world <- cases_deaths %>%
                 group_by(Date_reported) %>%
-                summarise(N_cases = n()) %>%
+                summarise(N_cases = sum()) %>% # sum the number of cases
                 mutate(Country = "World")
 
 cases1_long <- bind_rows(cases1, cases_world)
@@ -58,7 +57,7 @@ deaths1 <- cases_deaths %>%
 deaths_world <- cases_deaths %>%
   filter(Outcome == "Fatal") %>%
   group_by(Date_reported) %>%
-  summarise(N_deaths = n()) %>%
+  summarise(N_deaths = n()) %>% # count the number of cases, since they are all listed individually
   mutate(Country = "World")
 
 deaths1_long <- bind_rows(deaths1, deaths_world)
