@@ -8,7 +8,7 @@ file_path <- ""
 vax <- read_csv(paste0(file_path, "Vaccine timeline.csv"), skip = 0)
 
 # Remove withdrawn vaccines
-vax <- vax %>% filter(is.na(Withdrawal))
+vax <- vax %>% filter(is.na(NA_reason))
 
 # Arrange by year
 vax <- vax %>%
