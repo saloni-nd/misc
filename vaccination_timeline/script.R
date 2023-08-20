@@ -1,9 +1,14 @@
 library(tidyverse)
 library(scales)
+library(viridis)
+library(ggrepel)
 library(data.table)
 
 # Import xlsx spreadsheet
-file_path <- ""
+file_path <- "/Users/saloni/Documents/OWID/Spreadsheets/vaccination_timeline/"
+
+# Write path to save files
+save_folder <- "/Users/saloni/Documents/OWID/Spreadsheets/vaccination_timeline/"
 
 vax <- read_csv(paste0(file_path, "dataset.csv"), skip = 0)
 
@@ -24,9 +29,10 @@ vax$First <- +(!duplicated(vax$Name))
 
 
 # Select colors
-group.colors <- c(Bacteria = "#363B8F", 
-                  Virus = "#CEE0DC", 
-                  Parasite ="#E20B3A")
+group.colors <- c(Bacteria = "#38AABA", 
+                  Virus = "#BC8E5A", 
+                  Parasite ="#970046")
+
 
 ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
   # Colored points with black border
@@ -36,12 +42,12 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
   scale_fill_manual(values=group.colors) +
  # geom_text_repel(force=0.5, nudge_x=0.2) +
   theme_classic() +
-  scale_x_continuous(breaks= seq(1770,2030,by=10), 
+  scale_x_continuous(breaks= seq(1770,2020,by=10), 
                      labels = c(rep("",3), 1800, rep("",4), 
                                 1850, rep("",4), 
                                 1900, rep("",4),
                                 1950, rep("",4),
-                                2000, rep("",3))) +
+                                2000, rep("",2))) +
   theme(axis.text.y=element_blank(),
         plot.title = element_text(size = 20)) +
   labs(title="Progress in vaccine technology",
@@ -50,7 +56,7 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
        y="",
        caption="Source: Dattani (2023)",
        color="Target organism") +
-  coord_cartesian(xlim=c(1770,2025))
+  coord_cartesian(xlim=c(1770,2023))
   
 ggsave(paste0(file_path, "Vaccine_timeline.svg"),height=8,width=10)
   
