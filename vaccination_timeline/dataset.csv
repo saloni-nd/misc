@@ -1,4 +1,4 @@
-Name,Year,Organism,Inventor,Comments and citation,Withdrawal
+Name,Year,Organism,Inventor,Comments and citation,NA_reason
 Smallpox,1798,Virus,Edward Jenner,"1796 was first test, but findings were published 2 years later. 1800 - Dr. Benjamin Waterhouse gives the smallpox vaccine to his son and other family members. These smallpox vaccinations are the first in the U.S.",
 Rabies,1885,Virus,Louis Pasteur and Émile Roux,The first rabies vaccine was introduced in 1885 and was followed by an improved version in 1908.,
 Tetanus,1890,Bacteria,Emil von Behring,,
@@ -30,7 +30,7 @@ Influenza,1977,Virus,,Subunit vaccine,
 Pneumococcal disease,1977,Bacteria,,Polysaccharide vaccine that targets 14 strains https://www.cdc.gov/vaccines/pubs/pinkbook/pneumo.html,
 Meningitis,1978,Bacteria,,A and C https://www.nejm.org/doi/full/10.1056/nejmp2029466,
 Anthrax,1979,Bacteria,Harry Smith,Anthrax vaccine precipitated (AVP) vaccine https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6147967/,
-Adenovirus,1980,Virus,,Adenovirus types 4 and 7 oral https://www.nejm.org/doi/full/10.1056/nejmp2029466,
+Adenovirus,1975,Virus,,Adenovirus types 4 and 7 oral https://www.nejm.org/doi/full/10.1056/nejmp2029466 Adenovirus vaccine is only available for United States military personnel.  There is currently no adenovirus vaccine available to the general public. https://www.cdc.gov/vaccines/hcp/vis/vis-statements/adenovirus.html,Not publicly available
 Rabies,1980,Virus,,Human diploid cell vaccine https://www.nejm.org/doi/full/10.1056/nejmp2029466,
 Meningitis,1981,Bacteria,,Quadrivalent ACWY https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6733771/ and https://www.sciencedirect.com/science/article/pii/S1369848617301735,
 Hepatitis B,1981,Virus,,Plasma-derived surface antigen https://www.cdc.gov/vaccines/pubs/pinkbook/hepb.html,
@@ -46,8 +46,8 @@ Japanese encephalitis,1992,Virus,,Mouse brain vaccine https://www.nejm.org/doi/f
 Hepatitis A,1991,Virus,,Havrix vaccine,
 Hepatitis A,1995,Virus,Maurice Hilleman,Vaqta vaccine https://www.cdc.gov/vaccines/pubs/pinkbook/hepa.html,
 Rabies,1997,Virus,,Chick embryo cell vaccine https://www.nejm.org/doi/full/10.1056/nejmp2029466,
-Rotavirus*,1998,Virus,,Tetravalent. Withdrawn in 1999,1
-Lyme*,1998,Bacteria,,OspA vaccine https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2870557/ ,1
+Rotavirus*,1998,Virus,,Tetravalent. Withdrawn in 1999,Withdrawal
+Lyme*,1998,Bacteria,,OspA vaccine https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2870557/ ,Withdrawal
 Meningitis,1999,Bacteria,,Meningitis C,
 Pneumococcal disease,2000,Bacteria,,Pneumococcal conjugate vaccine,
 Hepatitis A,2001,Virus,,,
@@ -69,7 +69,7 @@ Meningitis,2013,Bacteria,,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6477034/ 
 Influenza,2014,Virus,,Intradermal https://www.nejm.org/doi/full/10.1056/nejmp2029466,
 Human papillomavirus,2014,Virus,Merck,Gardasil-9,
 Influenza,2015,Virus,,MF59 adjuvant vaccine https://www.nejm.org/doi/full/10.1056/nejmp2029466,
-Dengue,2015,Virus,,Dengvaxia became commercially available in 2016 first in 20 countries; approved in EU and US in 2018 and 2019 respectively,
+Dengue,2016,Virus,,Dengvaxia became commercially available in 2016 first in 20 countries; approved in EU and US in 2018 and 2019 respectively,
 Cholera,2016,Bacteria,,Serogroup O1 oral,
 Hepatitis B,2017,Virus,,Heplisav-B vaccine,
 Zoster,2017,Virus,GSK,Shingrix,
