@@ -99,13 +99,11 @@ infant_g_2021 <- infant_g_2021 %>%
 # Change to factor so the legend shows them separately
 infant_g_2021$Year <- as.factor(infant_g_2021$Year)
 
-# Get number of time periods shown for colour scale
-n_colours <- nrow(count(infant_g_2021, Year))
+# Define colors
+unique_years <- infant_g_2021 %>% pull(Year) %>% unique()
+colors <- viridis::viridis(length(unique_years))
 
-# Set colour scale - n colours from red to blue
-cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colours))
-
-# Interpolate mortality rate for days not given to show trendline
+# Interpolate mortality rate for days not given
 interp_fun_by_year <- function(Year) {
   subset_df <- infant_g_2021[infant_g_2021$Year == Year,]
   log_x <- log(subset_df$Age)
@@ -116,20 +114,26 @@ interp_fun_by_year <- function(Year) {
 
 # GGPLOT
 # Daily infant mortality by age
-ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=Year)) +
+plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=Year)) +
 geom_point(aes(color=Year), size=1) +
-  lapply(unique(infant_g_2021$Year), function(Year) {
-    stat_function(fun = interp_fun_by_year(Year), color="black")
-  }) +
+  #lapply(unique(infant_g_2021$Year), function(Year) {
+    #year <- unique_years[i]
+    #stat_function(fun = interp_fun_by_year(year), color=colors[i])
+ # }) +
       scale_y_continuous(trans='log10', breaks = c(0,1,2,5,10,20,50,100,200,500)) +
       #scale_x_continuous(trans='log10') +
   theme_classic() +
   theme(strip.background = element_blank()) +
-  scale_colour_manual(values=cc) +
+  scale_color_manual(name = "Year", values = colors) +
   theme(plot.title = element_text(face = "bold")) +
   labs(title = "Infant mortality rates decline after birth, with the shape of a power law", 
        subtitle = "The chances of dying are highest during the first few days of an infant's life.\nOver the following days, weeks and months, their chances of dying decrease sharply. \nThe straight line on the log-log plot indicates a steady, predictable decline as they age.\nOver time, the mortality rate has declined across the entire first year of an infant's life.", 
        y = "Daily mortality rate (per 100,000)", 
        x = "Age (days)",
        caption = "Source: Office for National Statistics, UK") 
+
+  for(i in seq_along(unique_years)) {
+    year <- unique_years[i]
+    plot <- plot + stat_function(fun = interp_fun_by_year(year), color = colors[i])
+  }
 
