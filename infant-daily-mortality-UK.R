@@ -100,8 +100,11 @@ infant_g_2021 <- infant_g_2021 %>%
 infant_g_2021$Year <- as.factor(infant_g_2021$Year)
 
 # Define colors
-unique_years <- infant_g_2021 %>% pull(Year) %>% unique()
-colors <- viridis::viridis(length(unique_years))
+unique_years <- infant_g_2021 %>% 
+                    pull(Year) %>% 
+                    unique() 
+unique_years <- sort(unique_years,decreasing=T)
+colors <- viridis::rocket(length(unique_years))
 
 # Interpolate mortality rate for days not given
 interp_fun_by_year <- function(Year) {
@@ -114,13 +117,20 @@ interp_fun_by_year <- function(Year) {
 
 # GGPLOT
 # Daily infant mortality by age
-plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=Year)) +
-geom_point(aes(color=Year), size=1) +
+plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=reorder(Year, desc(Year)))) +
+geom_point(aes(color=reorder(Year, desc(Year))), size=1) +
   #lapply(unique(infant_g_2021$Year), function(Year) {
     #year <- unique_years[i]
     #stat_function(fun = interp_fun_by_year(year), color=colors[i])
  # }) +
-      scale_y_continuous(trans='log10', breaks = c(0,1,2,5,10,20,50,100,200,500)) +
+      scale_y_continuous(trans='log10', breaks = c(0,
+                                                   0.001,0.002,0.005,
+                                                   0.01,0.02,0.05,
+                                                   0.1,0.2,0.5,
+                                                   1,2,5,
+                                                   10,20,50,
+                                                   100,200,500),
+                         labels = label_comma()) +
       #scale_x_continuous(trans='log10') +
   theme_classic() +
   theme(strip.background = element_blank()) +
@@ -137,3 +147,4 @@ geom_point(aes(color=Year), size=1) +
     plot <- plot + stat_function(fun = interp_fun_by_year(year), color = colors[i])
   }
 
+plot
