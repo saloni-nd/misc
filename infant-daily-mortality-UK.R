@@ -103,8 +103,13 @@ infant_g_2021$Year <- as.factor(infant_g_2021$Year)
 unique_years <- infant_g_2021 %>% 
                     pull(Year) %>% 
                     unique() 
-unique_years <- sort(unique_years,decreasing=T)
-colors <- viridis::rocket(length(unique_years))
+unique_years <- sort(unique_years)
+
+sunset <- c("#fcde9c","#faa476","#f0746e","#e34f6f","#dc3977","#b9257a","#7c1d6f")
+
+colourCount <- length(unique_years)
+getPalette <- colorRampPalette(sunset)
+colors <- getPalette(colourCount)
 
 # Interpolate mortality rate for days not given
 interp_fun_by_year <- function(Year) {
@@ -117,8 +122,8 @@ interp_fun_by_year <- function(Year) {
 
 # GGPLOT
 # Daily infant mortality by age
-plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=reorder(Year, desc(Year)))) +
-geom_point(aes(color=reorder(Year, desc(Year))), size=1) +
+plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=Year)) +
+geom_point(aes(color=Year), size=1.2) +
       scale_y_continuous(trans='log10', breaks = c(0,
                                                    0.001,0.002,0.005,
                                                    0.01,0.02,0.05,
@@ -132,15 +137,20 @@ geom_point(aes(color=reorder(Year, desc(Year))), size=1) +
   theme(strip.background = element_blank()) +
   scale_color_manual(name = "Year", values = colors) +
   theme(plot.title = element_text(face = "bold")) +
-  labs(title = "Infant mortality rates decline after birth, with the shape of a power law", 
-       subtitle = "The chances of dying are highest during the first few days of an infant's life.\nOver the following days, weeks and months, their chances of dying decrease sharply. \nThe straight line on the log-log plot indicates a steady, predictable decline as they age.\nOver time, the mortality rate has declined across the entire first year of an infant's life.", 
+  labs(title = "Infant mortality rates decline sharply after birth", 
+       subtitle = "The chances of dying are highest during the first few days of an infant's life.\nOver the following days, weeks and months, their chances of dying decrease sharply. \nOver time, the mortality rate has declined across the entire first year of an infant's life.", 
        y = "Daily mortality rate (per 100,000)", 
        x = "Age (days)",
        caption = "Source: Office for National Statistics, UK") 
 # Add interpolated lines connecting points
   for(i in seq_along(unique_years)) {
     year <- unique_years[i]
-    plot <- plot + stat_function(fun = interp_fun_by_year(year), color = colors[i])
+    plot <- plot + stat_function(fun = interp_fun_by_year(year), 
+                                 color = colors[i],
+                                 size=1.2)
   }
 
 plot
+
+ggsave(paste0(file_path,"daily_infant_mortality.svg"), plot,
+       width = 15, height = 12)
