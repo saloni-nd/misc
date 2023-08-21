@@ -111,7 +111,7 @@ colourCount <- length(unique_years)
 getPalette <- colorRampPalette(sunset)
 colors <- getPalette(colourCount)
 
-# Interpolate mortality rate for days not given
+# Function to interpolate mortality rate for days not given
 interp_fun_by_year <- function(Year) {
   subset_df <- infant_g_2021[infant_g_2021$Year == Year,]
   log_x <- log(subset_df$Age)
