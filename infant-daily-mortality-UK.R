@@ -123,7 +123,7 @@ interp_fun_by_year <- function(Year) {
 # GGPLOT
 # Daily infant mortality by age
 plot <- ggplot(data=infant_g_2021, aes(x=Age, y=Mortality, color=Year)) +
-geom_point(aes(color=Year), size=1.2) +
+geom_point(aes(color=Year), size=1.4) +
       scale_y_continuous(trans='log10', breaks = c(0,
                                                    0.001,0.002,0.005,
                                                    0.01,0.02,0.05,
@@ -147,7 +147,7 @@ geom_point(aes(color=Year), size=1.2) +
     year <- unique_years[i]
     plot <- plot + stat_function(fun = interp_fun_by_year(year), 
                                  color = colors[i],
-                                 size=1.2)
+                                 size=1.1)
   }
 
 plot
