@@ -47,8 +47,8 @@ cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colour
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   # Choose line or smoothed line or points
-  geom_line(aes(fill=Year),alpha=0.5) +
-  geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
+  geom_line(aes(color=Year),alpha=0.5) +
+  #geom_smooth(se=F,aes(fill=Year),alpha=0.25) +
   #geom_point(aes(fill=Year),size=0.2) +
   # Limit to 95 because ages above 100 are noisy and go above 100%
   coord_cartesian(xlim=c(0,95)) +
@@ -65,4 +65,5 @@ ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   labs(title = "Annual death rate by age", 
        y = "Death rate", 
        x = "Age",
+       color = "Birth cohort",
        caption = "Cohort death rates.\nSource: Human Mortality Database. Max Planck Institute for Demographic Research (Germany),\nUniversity of California, Berkeley (USA), and French Institute for Demographic Studies (France).\nAvailable at www.mortality.org (data downloaded on [1 May 2023])") 
