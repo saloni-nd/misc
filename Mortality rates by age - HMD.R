@@ -5,19 +5,19 @@ library(viridis)
 
 # Data source:
 # https://www.mortality.org/
-# Choose countries, then go to Period data > Death Rates > 1x10
+# Choose countries, then go to Cohort data > Death Rates > 1x10
 # Download and replace this with path to folder
 data_folder <- ""
-# set filename to Mx_1x10_(name of country).txt
+# set filename to cMx_1x10_(name of country).txt
 
-countries <- c("UK", "Italy", "Taiwan")
+countries <- c("Italy")
 mortality <- list()
 
 # Import data
 for (country in countries) {
   
   # Import and rename cols
-  mortality[[country]] <- read_fwf(paste0(data_folder, "Mx_1x10_", country, ".txt"), skip=3)
+  mortality[[country]] <- read_table(paste0(data_folder, "cMx_1x10_", country, ".txt"), skip=2)
   colnames(mortality[[country]]) <- c("Year", "Age", "Female", "Male", "Total")
   
   mortality[[country]] <- mortality[[country]] %>%
@@ -65,4 +65,4 @@ ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   labs(title = "Annual death rate by age", 
        y = "Death rate", 
        x = "Age",
-       caption = "Period death rates.\nSource: Human Mortality Database. Max Planck Institute for Demographic Research (Germany),\nUniversity of California, Berkeley (USA), and French Institute for Demographic Studies (France).\nAvailable at www.mortality.org (data downloaded on [1 May 2023])") 
+       caption = "Cohort death rates.\nSource: Human Mortality Database. Max Planck Institute for Demographic Research (Germany),\nUniversity of California, Berkeley (USA), and French Institute for Demographic Studies (France).\nAvailable at www.mortality.org (data downloaded on [1 May 2023])") 
