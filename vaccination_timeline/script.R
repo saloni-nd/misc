@@ -22,18 +22,18 @@ vax <- as.tibble(vax)
 # Label first vaccine for each disease
 vax$First <- +(!duplicated(vax$Name))
 
-# Select colors
-group.colors <- c(Bacteria = "#38AABA", 
-                  Virus = "#BC8E5A", 
-                  Parasite ="#970046")
 
+# Select colors
+group.colors <- c(Bacteria = "#363B8F", 
+                  Virus = "#CEE0DC", 
+                  Parasite ="#E20B3A")
 
 ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
-  geom_point(aes(color=Organism), size=2, stroke=1) +
-  geom_point(colour="black", pch=21, size=2.5) +
+  # Colored points with black border
+  geom_point(aes(fill=Organism), color="black", size=2.5, pch=21, stroke=0.8) +
   # Show text only for first vaccine
   geom_text(hjust=1, nudge_x=-4, data=filter(vax,First==1), size=3) + 
-  scale_color_manual(values=group.colors) +
+  scale_fill_manual(values=group.colors) +
  # geom_text_repel(force=0.5, nudge_x=0.2) +
   theme_classic() +
   scale_x_continuous(breaks= seq(1770,2030,by=10), 
@@ -48,7 +48,7 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
        subtitle="The year when each vaccine was licensed for the first time.\nSubsequent vaccines for the same pathogen or disease are shown on the same row.",
        x="",
        y="",
-       caption="Chart by Saloni Dattani",
+       caption="Source: Dattani (2023)",
        color="Target organism") +
   coord_cartesian(xlim=c(1770,2025))
   
