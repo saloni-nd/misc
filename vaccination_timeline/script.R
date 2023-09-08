@@ -5,7 +5,7 @@ library(data.table)
 # Import xlsx spreadsheet
 file_path <- ""
 
-vax <- read_csv(paste0(file_path, "Vaccine timeline.csv"), skip = 0)
+vax <- read_csv(paste0(file_path, "dataset.csv"), skip = 0)
 
 # Remove withdrawn vaccines
 vax <- vax %>% filter(is.na(NA_reason))
