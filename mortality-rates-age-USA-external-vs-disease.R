@@ -61,7 +61,8 @@ by_cause <- by_cause %>%
 by_cause <- by_cause %>%
   rename(Age = `Single-Year Ages Code`) %>%
   rename(Crude_rate = `Crude Rate`) %>%
-  rename(ICD_chapter = `ICD Chapter`)
+  rename(ICD_chapter = `ICD Chapter`) %>%
+  rename(ICD_chapter_code = `ICD Chapter Code`)
 
 # Change to numeric
 by_cause$Age <- as.numeric(by_cause$Age)
@@ -75,57 +76,51 @@ by_cause <- by_cause %>%
   filter(Age >= 0) %>%
   filter(Age <= 100)
 
+# Create category for disease-related
+disease_related <- by_cause %>%
+  filter(ICD_chapter != "External causes of morbidity and mortality") %>%
+  filter(ICD_chapter != "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified") %>%
+  group_by(Age) %>%
+  summarise(Deaths = sum(Deaths), Population = min(Population)) %>%
+  mutate(ICD_chapter = "Disease related", Crude_rate = (Deaths / Population) * 100000)
+
 #--- JOIN
 mx_age <- bind_rows(all_causes, by_cause)
+mx_age <- bind_rows(mx_age, disease_related)
+
 
 # Select cause categories to retain from plot
 mx_age <- mx_age %>%
             filter(ICD_chapter %in% c("All causes",
-                                      "Certain infectious and parasitic diseases",
-                                      "Diseases of the circulatory system",
-                                      "Diseases of the respiratory system",
-                                      "External causes of morbidity and mortality",
-                                      "Neoplasms")) 
+                                      "Disease related",
+                                      "External causes of morbidity and mortality")) 
 
   # Rename ICD chapters to human-readable names
-mx_age$ICD_chapter <- recode(mx_age$ICD_chapter, "Certain infectious and parasitic diseases" = "Infectious & parasitic diseases",
-                 "Diseases of the circulatory system" = "Circulatory diseases",
-                 "Diseases of the respiratory system" = "Respiratory disorders",
-                 "Neoplasms" = "Cancers",
+mx_age$ICD_chapter <- recode(mx_age$ICD_chapter, 
                  "External causes of morbidity and mortality" = "External causes")
 
+#--- PLOT 1: all together
+group.colors <- c("All causes" = "black", 
+                  "Disease related" = "#4C6A9C", 
+                  "External causes" ="#B16214")
 
-#--- PLOT
-
-# Plot for the "All causes" facet
-plot_focus <- ggplot(mx_age[mx_age$ICD_chapter == "All causes",], 
-                     aes(x=Age, y=Crude_rate)) +
-  geom_line(color="#883039") +
+plot_together <- ggplot(mx_age, 
+                     aes(x=Age, y=Crude_rate, color=ICD_chapter, linetype=ICD_chapter)) +
+  geom_line(linewidth=1) +
   theme_classic() +
-  labs(title = "All causes") +
+  labs(title = "Annual mortality rate, per 100,000 people",
+       subtitle = "Disease related causes includes all cause categories apart from external causes and signs and symptoms.",
+       caption = "Source: United States Centers for Disease Control and Prevention") +
   ylab("") +
   theme(strip.background = element_blank()) +
+  scale_color_manual(values=group.colors) +
   scale_x_continuous(breaks = seq(0, 100, by=20)) +
+  scale_linetype_manual(values = c("All causes" = "solid", 
+                                   "Disease related" = "dashed", 
+                                   "External causes" = "dashed")) +
   scale_y_continuous(labels = comma, trans='log2', breaks = c(0.1,1,10,100,1000,10000,100000)) 
 
-# Plot for the remaining categories
-plot_rest <- ggplot(mx_age[mx_age$ICD_chapter != "All causes",], 
-                    aes(x=Age, y=Crude_rate)) +
-  geom_line(color="#4C6A9C") +
-  theme_classic() +
-  facet_wrap(~ ICD_chapter, ncol = 1) +
-  ylab("") +
-  theme(strip.background = element_blank()) +
-  scale_x_continuous(breaks = seq(0, 100, by=20)) +
-  scale_y_continuous(labels = comma, trans='log2', breaks = c(0.1,1,10,100,1000,10000,100000)) 
+plot_together
 
-# Combine the two plots
-combined_plot <- (plot_focus | plot_rest) & 
-  plot_annotation(title = "How do mortality rates vary by age?",
-                  subtitle = "Annual mortality rates, per 100,000 people",
-                  caption = "Period death rates between 2018-2021. Source: CDC Wonder database.") &
-  plot_layout(ncol = 2, widths = c(3, 1), guides = "collect")
-
-print(combined_plot)
-
-
+ggsave(paste0(data_folder, "together_plot.svg"), plot = plot_together, 
+       width = 10, height = 6)
