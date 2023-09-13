@@ -46,18 +46,12 @@ mortality_g_total <- mortality_g_total %>%
                       filter(Year %in% paste0(decades, "-", decades + 9))
 
 # Get number of time periods shown for colour scale
-sunset <- c("#fcde9c","#faa476","#f0746e","#e34f6f","#dc3977","#b9257a","#7c1d6f")
-
-n_colours <- nrow(count(mortality_g_total, Year))
-
-# Set colour scale - n colours from red to blue
-getPalette <- colorRampPalette(sunset)
-colors <- getPalette(n_colours)
+colors <- rev(turbo(n_colours))
 
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
   # Choose line or smoothed line or points
-  geom_line(aes(color=Year),size=1,alpha=0.7) +
+  geom_line(aes(color=Year),size=1,alpha=1) +
   geom_point(data=filter(mortality_g_total, Age==0), aes(color=Year,x=Age,y=Rate), size=1, show.legend=FALSE)+
   # Limit to 95 because ages above 100 are noisy and go above 100%
   coord_cartesian(xlim=c(0,95)) +
