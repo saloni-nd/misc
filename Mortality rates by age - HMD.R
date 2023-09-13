@@ -1,3 +1,7 @@
+# Open libraries
+library(tidyverse)
+library(scales)
+library(viridis)
 
 # Data source:
 # https://www.mortality.org/
@@ -6,7 +10,6 @@
 data_folder <- ""
 # set filename to cMx_1x10_(name of country).txt
 
-# Replace with country names you just added
 countries <- c("USA", "Italy", "UK", "Sweden")
 mortality <- list()
 
@@ -49,7 +52,7 @@ n_colours <- nrow(count(mortality_g_total, Year))
 
 # Set colour scale - n colours from red to blue
 getPalette <- colorRampPalette(sunset)
-colors <- getPalette(colourCount)
+colors <- getPalette(n_colours)
 
 # Plot
 ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
@@ -69,3 +72,5 @@ ggplot(data=mortality_g_total, aes(color=Year, x=Age, y=Rate)) +
        x = "Age",
        color = "Birth cohort",
        caption = "Cohort death rates.\nSource: Human Mortality Database.\nUniversity of California, Berkeley (USA)\n(data downloaded on [12 Sep 2023])") 
+
+ggsave(paste0(data_folder, "annual-mortality-time-countries.svg"), width = 12, height = 6)
