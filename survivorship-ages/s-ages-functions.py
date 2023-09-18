@@ -168,14 +168,16 @@ melted_data = survivalAges.melt(id_vars=['Country', 'Sex', 'Year'],
                                 var_name='s', 
                                 value_name='Age')
 
-# Filter out the NaN values for plotting
-plot_data = melted_data.dropna()
+# Create separate line plots for each country
+g = sns.FacetGrid(melted_data, col="Country", hue="s", palette="viridis", height=3, aspect=1)
 
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=plot_data, x="Year", y="Age", hue="s", palette="viridis", size="s")
-plt.legend(loc="best")
+# Map the lineplot onto the FacetGrid
+g.map(sns.lineplot, "Year", "Age")
 
-# ... (continue with the rest of your plotting code)
+# Adjust the appearance of the FacetGrid
+g.set_axis_labels("Year", "Age")
+g.set_titles(col_template="{col_name} Country")
+g.add_legend()
 
 plt.show()
 
