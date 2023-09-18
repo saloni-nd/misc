@@ -6,7 +6,7 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = "" # replace with path to data here
+path = "/Users/saloni/Documents/Github/s-ages/data/" # replace with path to data here
 
 # Function to interpolate death counts and exposures using splines
 def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110, sDx=None, sNx=None):
@@ -150,7 +150,7 @@ total = reshape_data(Mx, 'Mx', 't')
 Mx_reshaped = pd.concat([females, males, total])
 
 # Let's assume you want to use sDx=10 and sNx=10 for now as a starting point.
-smoothData = Mx_reshaped.groupby(['Country', 'Sex', 'Year']).apply(lambda group: ageInterpolationSpline(group['Dx'], group['Nx'], group['Age'], sDx=30, sNx=30)).reset_index()
+smoothData = Mx_reshaped.groupby(['Country', 'Sex', 'Year']).apply(lambda group: ageInterpolationSpline(group['Dx'], group['Nx'], group['Age'], sDx=100000, sNx=100000)).reset_index()
 
 # Calculate survivorship
 survival = smoothData.groupby(['Country', 'Sex', 'Year']).apply(lambda group: calculateSurvival(group['Age'], group['Mx'])).reset_index()
