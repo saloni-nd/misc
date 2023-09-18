@@ -6,6 +6,8 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+path = "" # replace with path to data here
+
 # Function to interpolate death counts and exposures using splines
 def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110, sDx=None, sNx=None):
     df = pd.DataFrame({'Dx': Dx, 'Nx': Nx, 'Age': Age})
@@ -93,7 +95,6 @@ def HMDparse(DF, filepath):
 # Assuming the functions `getHMDdata`, `ageInterpolationSpline`, `calculateSurvival`, and `calculateSurvivalAges` 
 # are already translated to Python and available to use.
 
-path = "" # replace with path to data here
 filenames = os.listdir(path)
 
 # Filter filenames to only .txt files
