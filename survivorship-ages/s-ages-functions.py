@@ -6,7 +6,7 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = "/Users/saloni/Documents/Github/s-ages/data/" # replace with path to data here
+path = "" # replace with path to data here
 
 # Function to interpolate death counts and exposures using splines
 def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110, sDx=None, sNx=None):
@@ -183,3 +183,13 @@ g.add_legend()
 
 plt.show()
 
+# Remove s from column
+melted_data['s'] = melted_data['s'].str.replace('s', '')
+# Replace F with Females, M with Males and T with total
+melted_data['Sex'] = melted_data['Sex'].str.replace('F', 'Females')
+melted_data['Sex'] = melted_data['Sex'].str.replace('M', 'Males')
+melted_data['Sex'] = melted_data['Sex'].str.replace('T', 'Total')
+
+# Save
+file_name = "survivalAges_pythonoutput.csv"
+melted_data.to_csv(f"{path}{file_name}", index=False)
