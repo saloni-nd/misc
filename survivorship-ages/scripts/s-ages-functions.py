@@ -6,7 +6,7 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = "/Users/saloni/Github/misc/survivorship-ages/inputs/" # replace with path to data here
+path = "" # replace with path to data here
 
 # Function to interpolate death counts and exposures using splines
 def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110):
