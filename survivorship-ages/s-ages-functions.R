@@ -408,5 +408,10 @@ ggplot(subset(survivalAges,
         panel.spacing = unit(2,"lines"))
 
 
+survivalAges_selected <- survivalAges %>%
+                          filter(s %in% c(1,seq(10,90,by=10),99))
+
+write_csv(survivalAges_selected, paste0(path, "survivalAges_Routput.csv"))
+
 
 
