@@ -6,15 +6,15 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = "" # replace with path to data here
+path = "/Users/saloni/Github/misc/survivorship-ages/inputs/" # replace with path to data here
 
 # Function to interpolate death counts and exposures using splines
-def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110, sDx=None, sNx=None):
+def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110):
     df = pd.DataFrame({'Dx': Dx, 'Nx': Nx, 'Age': Age})
     
     # Use user-defined s or let the function determine it automatically
-    splineDx = UnivariateSpline(df['Age'], df['Dx'], s=sDx)
-    splineNx = UnivariateSpline(df['Age'], df['Nx'], s=sNx)
+    splineDx = UnivariateSpline(df['Age'], df['Dx'], s=0, k=3)
+    splineNx = UnivariateSpline(df['Age'], df['Nx'], s=0, k=3)
     
     Age_range = np.arange(startAge, endAge, 0.01)
     
@@ -150,7 +150,7 @@ total = reshape_data(Mx, 'Mx', 't')
 Mx_reshaped = pd.concat([females, males, total])
 
 # Let's assume you want to use sDx=10 and sNx=10 for now as a starting point.
-smoothData = Mx_reshaped.groupby(['Country', 'Sex', 'Year']).apply(lambda group: ageInterpolationSpline(group['Dx'], group['Nx'], group['Age'], sDx=100000, sNx=100000)).reset_index()
+smoothData = Mx_reshaped.groupby(['Country', 'Sex', 'Year']).apply(lambda group: ageInterpolationSpline(group['Dx'], group['Nx'], group['Age'])).reset_index()
 
 # Calculate survivorship
 survival = smoothData.groupby(['Country', 'Sex', 'Year']).apply(lambda group: calculateSurvival(group['Age'], group['Mx'])).reset_index()
