@@ -5,10 +5,10 @@ library(ggrepel)
 library(data.table)
 
 # Import xlsx spreadsheet
-file_path <- "/Users/saloni/Documents/OWID/Spreadsheets/vaccination_timeline/"
+file_path <- ""
 
 # Write path to save files
-save_folder <- "/Users/saloni/Documents/OWID/Spreadsheets/vaccination_timeline/"
+save_folder <- ""
 
 vax <- read_csv(paste0(file_path, "dataset.csv"), skip = 0)
 
