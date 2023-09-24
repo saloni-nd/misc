@@ -13,7 +13,7 @@ data_folder <- ""
 # Choose countries, then go to Period data > Death Rates > 1x1
 # set filename to Mx_1x10_(name of country).txt
 
-countries <- c("SWE")
+countries <- c("FRA")
 cohort_mortality <- list()
 period_mortality <- list()
 
