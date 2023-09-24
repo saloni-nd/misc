@@ -72,10 +72,10 @@ mortality$Year <- as.factor(mortality$Year)
 colors <- rev(magma(n_colours))
 
 # Plot cohort mortality rates
-ggplot(data=mortality, aes(color=Year, x=Age, y=Rate)) +
+ggplot(data=filter(mortality, type='Cohort'), aes(color=Year, x=Age, y=Rate)) +
   # Choose line or smoothed line or points
   geom_line(aes(color=Year),size=1,alpha=1) +
-  geom_point(data=filter(mortality, Age==0), aes(color=Year,x=Age,y=Rate), size=1, show.legend=FALSE)+
+  geom_point(data=filter(mortality, Age==0, type='Cohort'), aes(color=Year,x=Age,y=Rate), size=1, show.legend=FALSE)+
   # Limit to 95 because ages above 100 are noisy and go above 100%
   coord_cartesian(xlim=c(0,95)) +
   facet_grid(cols=vars(Country)) +
