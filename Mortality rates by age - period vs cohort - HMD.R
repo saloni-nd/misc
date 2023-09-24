@@ -101,10 +101,8 @@ mortality_y <- mortality %>%
 mortality_y$Year <- as.factor(mortality_y$Year)
 
 # Get number of time periods shown for colour scale
-n_colours <- nrow(count(mortality_g_total, Year))
-
-# Set colour scale - n colours from red to blue
-cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colours))
+n_colours <- nrow(count(mortality_y, Year))
+colors <- colorRampPalette(brewer.pal(8, "Spectral"))(n_colours)
 
 # Plot comparison between cohort and period mortality rates
 ggplot(data=mortality_y, aes(color=Year, x=Age, y=Rate)) +
