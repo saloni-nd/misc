@@ -4,7 +4,6 @@ library(viridis)
 library(ggrepel)
 library(data.table)
 library(RColorBrewer)
-library(lme4)
 
 # Data source: Human Mortality Database, on mortality.org
 # Download and save to folder below, as `Mx_1x1_[country].txt`
