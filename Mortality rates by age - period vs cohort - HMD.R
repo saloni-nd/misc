@@ -62,17 +62,17 @@ mortality$Type <- as.factor(mortality$Type)
 
 # Select decades to show, retain only Total
 decades <- seq(1800, 2000, by=20)
-mortality <- mortality %>%
+mortality_d <- mortality %>%
                   filter(Year %in% decades) %>%
                   filter(Sex == 'Total')
 
-mortality$Year <- as.factor(mortality$Year)
+mortality_d$Year <- as.factor(mortality_d$Year)
 
 # Get number of time periods shown for colour scale
 colors <- rev(magma(n_colours))
 
 # Plot cohort mortality rates
-ggplot(data=filter(mortality, type='Cohort'), aes(color=Year, x=Age, y=Rate)) +
+ggplot(data=filter(mortality_d, type='Cohort'), aes(color=Year, x=Age, y=Rate)) +
   # Choose line or smoothed line or points
   geom_line(aes(color=Year),size=1,alpha=1) +
   geom_point(data=filter(mortality, Age==0, type='Cohort'), aes(color=Year,x=Age,y=Rate), size=1, show.legend=FALSE)+
@@ -92,8 +92,22 @@ ggplot(data=filter(mortality, type='Cohort'), aes(color=Year, x=Age, y=Rate)) +
 
 ggsave(paste0(data_folder, "annual-mortality-time-countries.svg"), width = 12, height = 6)
 
+# Select years to show, retain only Total
+years <- c(1910,1918,1920,1930,1940)
+mortality_y <- mortality %>%
+                  filter(Year %in% years) %>%
+                  filter(Sex == 'Total')
+
+mortality_y$Year <- as.factor(mortality_y$Year)
+
+# Get number of time periods shown for colour scale
+n_colours <- nrow(count(mortality_g_total, Year))
+
+# Set colour scale - n colours from red to blue
+cc <- scales::seq_gradient_pal("red", "blue", "Lab")(seq(0,1,length.out=n_colours))
+
 # Plot comparison between cohort and period mortality rates
-ggplot(data=mortality, aes(color=Year, x=Age, y=Rate)) +
+ggplot(data=mortality_y, aes(color=Year, x=Age, y=Rate)) +
     geom_line(aes(color=Year),size=1, alpha=1) +
     geom_point(data=filter(mortality, Age==0), aes(color=Year,x=Age,y=Rate), size=1, show.legend=FALSE) +
     facet_grid(cols=vars(Type)) +
@@ -104,7 +118,7 @@ ggplot(data=mortality, aes(color=Year, x=Age, y=Rate)) +
        x = "Age",
        color = "Year or birth cohort", 
        caption = "Period vs cohort age-specific death rates. Source: Source: Max Planck Institute for Demographic Research (Germany), University of California, Berkeley (USA), and French Institute for Demographic Studies (France).\n(data downloaded on 24 Sep 2023)") +
-    scale_color_manual(values = colors) +
+    scale_color_manual(values = cc) +
     scale_x_continuous(breaks = seq(0, 100, by=10)) +
     scale_y_continuous(labels = scales::percent, trans='log2', breaks = c(0.0001, 0.001, 0.01, 0.1, 1)) 
 
