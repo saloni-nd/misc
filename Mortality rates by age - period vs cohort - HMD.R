@@ -120,5 +120,5 @@ ggplot(data=mortality_y, aes(color=Year, x=Age, y=Rate)) +
     scale_x_continuous(breaks = seq(0, 100, by=10)) +
     scale_y_continuous(labels = scales::percent, trans='log2', breaks = c(0.0001, 0.001, 0.01, 0.1, 1)) 
 
-ggsave(paste0(data_folder, "period-cohort-age-specific-mortality-sweden.svg"), width = 12, height = 6)
+ggsave(paste0(data_folder, "period-cohort-age-specific-mortality.svg"), width = 12, height = 6)
 
