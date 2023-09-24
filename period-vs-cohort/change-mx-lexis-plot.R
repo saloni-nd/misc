@@ -6,6 +6,11 @@ library(data.table)
 
 # Data source: Human Mortality Database, on mortality.org
 # Download and save to folder below, as `Mx_1x1_[country].txt`
+
+# Code source: Methods for disentangling period and cohort changes in mortality risk over the twentieth century: comparing graphical and modelling approaches (2022). Phil Mike Jones, Jon Minton & Andrew Bell.
+# https://link.springer.com/article/10.1007/s11135-022-01498-3
+# Code: https://zenodo.org/record/6866402
+
 file_path <- ""
 
 countries <- c("FRATNP")
