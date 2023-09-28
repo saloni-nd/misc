@@ -7,10 +7,10 @@ library(data.table)
 
 # Data source:
 # https://www.mortality.org/
-# Choose countries, then go to Cohort data > Death Rates > 1x10
+# Choose countries, then go to Period data > Life tables > 1x1
 # Download and replace this with path to folder
 data_folder <- "/Users/saloni/Documents/Github/misc/"
-# set filename to cMx_1x10_(name of country).txt
+# set filename to lifetable_1x1_(name of country)_(sex).txt
 
 countries <- c("Italy")
 sexes <- c("Females", "Males")
