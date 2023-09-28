@@ -3,14 +3,7 @@ library(reshape2)
 library(foreach)
 library(doParallel)
 library(DemoDecomp)
-
-#load data
-# Open libraries
 library(tidyverse)
-library(scales)
-library(viridis)
-library(RColorBrewer)
-library(data.table)
 
 # Data source:
 # https://www.mortality.org/
