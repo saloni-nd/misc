@@ -12,7 +12,7 @@ library(countrycode)
 # https://www.mortality.org/
 # Choose countries, then go to Cohort data > Death Rates > 1x10
 # Download and replace this with path to folder
-data_folder <- "/Users/saloni/Documents/Github/misc/"
+data_folder <- "/Github/misc/"
 # set filename to cMx_1x10_(name of country).txt
 
 countries <- c("Italy")
@@ -60,12 +60,9 @@ lifetable <- lifetable %>%
 mutate(lx = lx / 1e5, 
         dx = dx / 1e5) %>% 
     group_by(Age, Year, Sex) %>% 
-    mutate(sd = sd_dx(Age, dx, lx, ex, ax)) %>% 
-    mutate(phi = sum(head(dx_f, -1) * tail(lx_m, -1), na.rm = T) + 
-            sum(dx_f * dx_m, na.rm = T) / 2,
-    ungroup()
+    mutate(sd = sd_dx(Age, dx, lx, ex, ax)) 
 
-# calculate phi - need to pivot so that theres a separate column for each with _f or _m for males or females
+# calculate phi - need to pivot so that theres a separate column for each sex, e.g. with _Females or _Males for males or females
 df_pivoted <- lifetable %>%
   pivot_wider(
     id_cols = c(Year, Age, Country, Type),
