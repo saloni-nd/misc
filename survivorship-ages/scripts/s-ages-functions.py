@@ -6,8 +6,8 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = "" # replace with path to data here
-path_output = "" # replace with path to data here
+path = "/Github/s-ages/data/" # replace with path to data here
+path_output = "/Github/s-ages/data/" # replace with path to data here
 
 # Function to interpolate death counts and exposures using splines
 def ageInterpolationSpline(Dx, Nx, Age, startAge=0, endAge=110):
@@ -51,23 +51,6 @@ def calculateSurvivalAges(Age, fx, Sx, hx):
             out[f's{i}'] = np.nan
     
     return pd.DataFrame(out, index=[0])
-
-
-def getHMDdata(name, path):
-    p = os.path.join(path, name)
-    dat_raw = pd.read_csv(p, skiprows=2, na_values=".")
-    
-    # Splitting the name for Country and Type
-    name_split = name.split('.')
-    country = name_split[0]
-    type_x = name_split[1]
-    type_ = type_x.split('_')[0]
-    
-    dat = HMDparse(dat_raw, p)
-    dat['Country'] = country
-    dat['Type'] = type_
-    
-    return dat
 
 
 def getHMDdata(name, path):
