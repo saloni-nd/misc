@@ -187,4 +187,9 @@ results = lifetable.groupby(['Country', 'Sex', 'Year']).apply(compute_metrics).r
 
 results = results.drop_duplicates()
 
+# Assuming Results is a pandas DataFrame
+file_path = data_folder + "gini_lifeexpectancy_pythonoutput.csv"
+results.to_csv(file_path, index=False)
+
+
 
