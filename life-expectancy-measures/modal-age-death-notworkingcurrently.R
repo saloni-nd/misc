@@ -204,7 +204,7 @@ threshold.decomp.function <- function(DT = .SD, func2 = h.frommx, Age = 20:100){
   threshold.ages     <- unlist(foreach(i=1:dim(mat)[2],.packages = 'DemoDecomp',.export = 
                                          c('AKm02a0')) %dopar% {
                                           if ( as.integer(colnames(mat)[i]) >= 1960){Age <- 45:100}
-                                           if (count == 'ISL' & Sex == 'Females' & as.integer(colnames(mat)[i]) %in% c(1981,1982,1991,2016)){Age <- 70:100}
+                                           if (count == 'Iceland' & Sex == 'Females' & as.integer(colnames(mat)[i]) %in% c(1981,1982,1991,2016)){Age <- 70:100}
                                            perturbation <- horiuchi(func=func2, pars1=mat[,i] , pars2=mat[,i]*.99, N=35,sex=DT$Sex[1])
                                            f <- approxfun(Age,perturbation[(Age+1)],method = "linear",rule=2 )
                                            tryCatch({
@@ -222,7 +222,7 @@ threshold.decomp.function <- function(DT = .SD, func2 = h.frommx, Age = 20:100){
 strt<-Sys.time()
 
 Threshold.ages <- lifetable %>%
-  group_by(Sex, Country) %>%
+  group_by(Sex, Country, Type) %>%
   summarise(
     a.h = threshold.decomp.function(., func2 = h.frommx),
     a.g = threshold.decomp.function(., func2 = log.G.frommx),
