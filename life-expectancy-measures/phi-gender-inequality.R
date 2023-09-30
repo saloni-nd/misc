@@ -1,8 +1,5 @@
 # Open libraries
 library(tidyverse)
-library(scales)
-library(viridis)
-library(RColorBrewer)
 library(data.table)
 library(magrittr)
 library(readxl)
