@@ -3,7 +3,7 @@ import numpy as np
 
 # Data source:
 # https://www.mortality.org/
-# Choose countries, then get lifetable data 1x1
+# Choose countries, then get lifetable data 1x1. Name the files e.g. lifetable_1x1_[country]_[sex].txt
 # Download and replace this with path to folder
 data_folder = "/Github/misc/"
 
