@@ -7,10 +7,9 @@ library(countrycode)
 
 # Data source:
 # https://www.mortality.org/
-# Choose countries, then go to Cohort data > Death Rates > 1x10
-# Download and replace this with path to folder
+# Lifetable 1x1 data
 data_folder <- "/Github/misc/"
-# set filename to cMx_1x10_(name of country).txt
+# set name to lifetable_1x1_country_sex.txt
 
 countries <- c("Italy")
 sexes <- c("Females", "Males")
