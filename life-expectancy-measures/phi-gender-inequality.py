@@ -3,7 +3,7 @@ import numpy as np
 
 # Data source:
 # https://www.mortality.org/
-# Choose countries, then go to Cohort data > Death Rates > 1x10
+# Choose countries, then get lifetable data 1x1
 # Download and replace this with path to folder
 data_folder = "/Github/misc/"
 
