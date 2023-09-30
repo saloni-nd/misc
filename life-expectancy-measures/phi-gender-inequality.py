@@ -30,7 +30,7 @@ for sex in sexes:
 # Combine all data frames in the dictionary into one data frame
 lifetable = pd.concat(lifetable_dict.values())
 lifetable['Sex'] = lifetable['Sex'].astype('category')
-lifetable['Age'] = pd.to_numeric(lifetable['Age'], errors='coerce')
+lifetable['Age'] = pd.to_numeric(lifetable['Age'], errors='coerce') # This removes the open-ended age groups like 110+, but Im not sure if this is the correct thing to do
 
 print(lifetable.describe())
 
