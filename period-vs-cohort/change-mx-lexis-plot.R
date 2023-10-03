@@ -4,41 +4,15 @@ library(viridis)
 library(ggrepel)
 library(data.table)
 library(RColorBrewer)
+library(latticeExtra)
+library(assertthat)
 
 # Data source: Human Mortality Database, on mortality.org
 # Download and save to folder below, as `Mx_1x1_[country].txt`
-file_path <- ""
+file_path <- "/Github/misc/period-vs-cohort/"
 
-countries <- c("FRATNP", "ITA")
+countries <- c("ITA")
 mortality <- list()
-
-# Import data
-for (country in countries) {
-  
-  # Import and rename cols
-  mortality[[country]] <- read_table(paste0(file_path, "Mx_1x1_", country, ".txt"), skip=2)
-  colnames(mortality[[country]]) <- c("Year", "Age", "Female", "Male", "Total")
-  
-  mortality[[country]] <- mortality[[country]] %>%
-    mutate(Country = country)
-  
-}
-
-
-# Join into single df
-mortality <- do.call(rbind.data.frame, mortality)
-
-# Reformat
-mortality$Age <- as.integer(mortality$Age)
-mortality$Female <- as.numeric(mortality$Female)
-mortality$Male <- as.numeric(mortality$Male)
-mortality$Total <- as.numeric(mortality$Total)
-mortality$Country <- as.factor(mortality$Country)
-
-# Gather
-mortality <- mortality %>%
-              gather(key = Sex, value = Mx, Female:Total)
-
 
 ### Try using populations and deaths instead
 
@@ -90,7 +64,7 @@ joined$Age <- as.numeric(joined$Age)
 ######## Use either `mortality` or `joined` here
 
 # Create vars for log10 mortality rate and ln mortality rate
-mort_hmd <- mortality %>%
+mort_hmd <- joined %>%
   mutate(
     birth_year = Year - Age
   ) %>%
@@ -119,12 +93,11 @@ mort_hmd <- mort_hmd %>%
 
 # Data above age 90 is pretty bad
 mort_hmd <- mort_hmd %>%
-  filter(Age  < 91,
-         Year > 1899)
+  #dplyr::filter(Age  < 91) %>%
+  dplyr::filter(Year > 1899)
 
 
 cores = parallel::detectCores() - 1L
-
 
 # Lexis surface (contour) plots
 parallel::mclapply(as.list(unique(mort_hmd$Country)), function(Country) {
@@ -149,7 +122,7 @@ parallel::mclapply(as.list(unique(mort_hmd$Country)), function(Country) {
       at = seq(-0.1, 0.1, by = 0.025)
     )
   
-  png(filename = paste0(file_path, "mort_", Country, ".png"),
+  png(filename = paste0(file_path, "mort_", country, ".png"),
       width = 420, height = 148, units = "mm", res = 300)
   print(mort_plot)
   dev.off()
@@ -157,5 +130,4 @@ parallel::mclapply(as.list(unique(mort_hmd$Country)), function(Country) {
 },
 mc.cores = cores
 )
-
 
