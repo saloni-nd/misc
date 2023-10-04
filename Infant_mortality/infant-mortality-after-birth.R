@@ -7,20 +7,21 @@ library(dplyr)
 # Filepath
 file_path <- "/Github/misc/Infant_mortality/"
 
-# 2020 US CDC Wonder data > Group by > Gender, Age at death in days
-infant_2020 <- read_delim(paste0(file_path, "Linked Birth  Infant Death Records, 2017-2021 Expanded-by-gender.txt"), delim = "\t")
+# 2021 US CDC Wonder data > Group by > Gender, Age at death in days
+infant_2021 <- read_delim(paste0(file_path, "Linked Birth  Infant Death Records, 2017-2021 Expanded-by-gender.txt"), delim = "\t")
+
 
 # Rename columns
-colnames(infant_2020) <- c("Notes", "Gender", "Gender_code", "Age_days", "Age_code", "Deaths", "Births", "Death_rate")
+colnames(infant_2021) <- c("Notes", "Gender", "Gender_code", "Age_days", "Age_code", "Deaths", "Births", "Death_rate")
 
 # Remove string that says unreliable from Death_rate column
-infant_2020$Death_rate <- str_replace(infant_2020$Death_rate, " \\(Unreliable\\)", "")
+infant_2021$Death_rate <- str_replace(infant_2021$Death_rate, " \\(Unreliable\\)", "")
 
 # Convert Death_rate to numeric
-infant_2020$Death_rate <- as.numeric(infant_2020$Death_rate)
+infant_2021$Death_rate <- as.numeric(infant_2021$Death_rate)
 
 # PLOT 1: Daily mortality rates across the first year, per 1,000 births
-ggplot(infant_2020, aes(x = Age_code, y = Death_rate, color=Gender)) +
+ggplot(infant_2021, aes(x = Age_code, y = Death_rate, color=Gender)) +
   geom_smooth(size = 1) +
   scale_y_log10(breaks = c(0.001, 0.01, 0.1, 1, 10)) +
   scale_x_continuous(breaks = seq(0, 360, 60)) +
@@ -36,12 +37,12 @@ ggplot(infant_2020, aes(x = Age_code, y = Death_rate, color=Gender)) +
 ggsave(paste0(file_path, "daily_infant_mortality_US_gender.png"))
 
 # Cumulative deaths calculation
-infant_2020 <- infant_2020 %>%
+infant_2021 <- infant_2021 %>%
   group_by(Gender) %>%
   mutate(Cumulative_deaths = cumsum(Deaths))
 
 # PLOT 2: Cumulative share of infants who have died by a given age
-ggplot(infant_2020, aes(x = Age_code, y = Cumulative_deaths / Births, color=Gender)) +
+ggplot(infant_2021, aes(x = Age_code, y = Cumulative_deaths / Births, color=Gender)) +
   geom_line(size = 1.5) +
   coord_cartesian(xlim=c(0,360),ylim=c(0,0.006)) +
   scale_y_continuous(labels = scales::percent_format(scale = 100),
