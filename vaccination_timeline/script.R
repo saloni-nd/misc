@@ -17,7 +17,7 @@ vax <- vax %>% filter(is.na(NA_reason))
 
 # Arrange by year
 vax <- vax %>%
-          arrange(Year, Name) 
+          arrange(Year) 
 
 # Give vaccines an ID number - all vaccines for the same disease get the same ID
 setDT(vax)[, id := .GRP, by = Name]
