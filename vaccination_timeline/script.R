@@ -49,6 +49,7 @@ ggplot(data=vax, aes(x=Year,y=id, label=Name)) +
                                 1950, rep("",4),
                                 2000, rep("",2))) +
   theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
         plot.title = element_text(size = 20)) +
   labs(title="Progress in vaccine technology",
        subtitle="The year when each vaccine was licensed for the first time.\nSubsequent vaccines for the same pathogen or disease are shown on the same row.",
