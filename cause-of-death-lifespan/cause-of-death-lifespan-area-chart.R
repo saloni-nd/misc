@@ -51,13 +51,10 @@ coded_df <- coded_df %>%
 
 # Calculate % of deaths in that age group in each ICD group
 coded_df <- coded_df %>%
-  group_by(Age, Gender, ICD) %>%
+  group_by(Age, Gender) %>%
   mutate(Total_Deaths_Group = sum(Deaths_n)) %>%
   ungroup() %>%
-  group_by(Age, Gender) %>%
-  mutate(Total_Deaths_Age_Gender = sum(Deaths_n)) %>%
-  ungroup() %>%
-  mutate(Percentage_Deaths_ICD = (Total_Deaths_Group / Total_Deaths_Age_Gender) * 100)
+  mutate(Percentage_Deaths_ICD = (Deaths_n / Total_Deaths_Group) * 100)
 
 # Remove NA gender
 coded_df <- coded_df %>%
