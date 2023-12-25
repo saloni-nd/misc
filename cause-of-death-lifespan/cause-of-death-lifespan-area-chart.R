@@ -86,7 +86,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
-  #scale_y_continuous(breaks = seq(0, 100, by = 20), labels = function(x) paste0(x, "%")) + # Y-axis breaks for geom_bar version (in percentages)
+  #scale_y_continuous(breaks = seq(0, 1, by=0.2), labels = scales::label_percent()) + # Y-axis breaks for geom_bar version (in percentages)
   labs(
     title = "How do causes of death vary with age?",
     subtitle = "The share of deaths from each ICD cause of death category, between 2018-2021 in the United States",
