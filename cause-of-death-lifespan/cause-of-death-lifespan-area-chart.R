@@ -72,6 +72,7 @@ my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a",
 
 # Create chart
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
+  #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
   facet_wrap(~ Gender_long, scales = "free_y") + 
   scale_fill_manual(values = my_colors) + 
