@@ -56,13 +56,21 @@ coded_df <- coded_df %>%
   filter(!is.na(ICD)) %>%
   filter(!is.na(Deaths_n)) %>%
   filter(!is.na(Population))
-
-# Calculate % of deaths in that age group in each ICD group
+  
+# Calculate the % of deaths in each age and gender group that are in each ICD code
 coded_df <- coded_df %>%
   group_by(Age, Gender) %>%
   mutate(Total_Deaths_Group = sum(Deaths_n)) %>%
   ungroup() %>%
   mutate(Percentage_Deaths_ICD = (Deaths_n / Total_Deaths_Group) * 100)
+
+summary_df <- coded_df %>%
+  group_by(Age, Gender) %>%
+  summarize(Total_Percentage = sum(Percentage_Deaths_ICD)) %>%
+  ungroup()
+
+# View the summary dataframe
+summary(summary_df)
 
 # Define a manual palette with 20 distinct colors
 my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", 
@@ -77,7 +85,8 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   facet_wrap(~ Gender_long, scales = "free_y") + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
-  scale_y_continuous(breaks = seq(0, 100, by = 20), labels = label_percent(scale = 1)) +
+  scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
+  #scale_y_continuous(breaks = seq(0, 100, by = 20), labels = function(x) paste0(x, "%")) + # Y-axis breaks for geom_bar version (in percentages)
   labs(
     title = "How do causes of death vary with age?",
     subtitle = "The share of deaths from each ICD cause of death category, between 2018-2021 in the United States",
@@ -94,3 +103,5 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     legend.position = "bottom", # Place legend at the bottom
     legend.box = "horizontal", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16))
+
+  
