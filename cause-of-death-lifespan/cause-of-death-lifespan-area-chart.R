@@ -1,5 +1,6 @@
 # Open libraries
 library(tidyverse)
+library(scales)
 
 # Data source:
 # CDC Wonder https://wonder.cdc.gov/
@@ -73,10 +74,12 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   geom_area(position = "stack", alpha = 0.7) + 
   facet_wrap(~ Gender_long, scales = "free_y") + 
   scale_fill_manual(values = my_colors) + 
+  scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  scale_y_continuous(breaks = seq(0, 100, by = 20), labels = label_percent(scale = 1)) +
   labs(
     title = "How do causes of death change with age?",
     x = "Age",
-    y = "Share of deaths (%)",
+    y = "Share of deaths",
     fill = "ICD cause of death category",
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
@@ -87,5 +90,4 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     axis.title = element_text(size = 12),
     legend.position = "bottom", # Place legend at the bottom
     legend.box = "horizontal", # Arrange legend items horizontally
-    plot.title = element_text(face = "bold", size = 16)
-  )
+    plot.title = element_text(face = "bold", size = 16))
