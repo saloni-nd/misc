@@ -50,12 +50,12 @@ coded_df <- coded_df %>%
   mutate(ICD_long = recode(ICD_long, !!!rename_vector))
 
 # Remove NAs
-coded_df <- coded_df %>%
-  filter(!is.na(Gender)) %>% # This line removes rows where Gender is NA
-  filter(!is.na(Age_long)) %>%
-  filter(!is.na(ICD)) %>%
-  filter(!is.na(Deaths_n)) %>%
-  filter(!is.na(Population))
+coded_df <- coded_df %>% 
+              filter(!is.na(Gender), 
+                     !is.na(Age_long), 
+                     !is.na(ICD), 
+                     !is.na(Deaths_n), 
+                     !is.na(Population))
   
 # Calculate the % of deaths in each age and gender group that are in each ICD code
 coded_df <- coded_df %>%
@@ -63,14 +63,6 @@ coded_df <- coded_df %>%
   mutate(Total_Deaths_Group = sum(Deaths_n)) %>%
   ungroup() %>%
   mutate(Percentage_Deaths_ICD = (Deaths_n / Total_Deaths_Group) * 100)
-
-summary_df <- coded_df %>%
-  group_by(Age, Gender) %>%
-  summarize(Total_Percentage = sum(Percentage_Deaths_ICD)) %>%
-  ungroup()
-
-# View the summary dataframe
-summary(summary_df)
 
 # Define a manual palette with 20 distinct colors
 my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", 
