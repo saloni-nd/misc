@@ -54,7 +54,8 @@ coded_df <- coded_df %>%
   filter(!is.na(Gender)) %>% # This line removes rows where Gender is NA
   filter(!is.na(Age_long)) %>%
   filter(!is.na(ICD)) %>%
-  filter(!is.na(Deaths_n))
+  filter(!is.na(Deaths_n)) %>%
+  filter(!is.na(Population))
 
 # Calculate % of deaths in that age group in each ICD group
 coded_df <- coded_df %>%
@@ -71,7 +72,7 @@ my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a",
 
 # Create chart
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
-  geom_area(position = "stack", alpha = 0.7) + 
+  geom_area(position = "fill", alpha = 0.7) + 
   facet_wrap(~ Gender_long, scales = "free_y") + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
