@@ -160,6 +160,7 @@ ggplot(coded_df, aes(x = Age, y = Death_crude_rate, fill = ICD_long)) +
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
   theme_minimal() + 
+  guides(fill = guide_legend(title.position = "top")) +
   theme(
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
