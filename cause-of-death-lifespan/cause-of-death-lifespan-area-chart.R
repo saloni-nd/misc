@@ -12,7 +12,7 @@ data_folder <- ""
 
 # Import
 raw_df <- read_tsv(paste0(data_folder, "underlying-cause-of-death-single-year-2018-2021.txt"))
-colnames(raw_df) <- c("Notes", "Age_long", "Age", "Gender_long", "Gender", "ICD_long", "ICD", "Deaths_n", "Population", "Death_crude_rate", "Percent_total_deaths")
+colnames(raw_df) <- c("Notes", "Age_long", "Age", "Gender_long", "Gender", "ICD_long", "ICD", "Deaths_n", "Population", "Death_crude_rate")
 
 # Recode vars
 coded_df <- raw_df
@@ -70,7 +70,7 @@ my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a",
                "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", 
                "#17becf", "#9edae5")
 
-# Create chart
+# 1. Create chart showing share of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
@@ -96,4 +96,28 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     legend.box = "horizontal", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16))
 
+# 2. Create chart showing number of deaths from each cause
+ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
+  geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
+  facet_wrap(~ Gender_long, scales = "free_y") + 
+  scale_fill_manual(values = my_colors) + 
+  scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  labs(
+    title = "How do causes of death vary with age?",
+    subtitle = "The number of deaths from each ICD cause of death category, between 2018-2021 in the United States",
+    x = "Age",
+    y = "Number of deaths",
+    fill = "ICD cause of death category",
+    caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
+  ) +
+  theme_minimal() + 
+  theme(
+    strip.text.x = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    legend.position = "bottom", # Place legend at the bottom
+    legend.box = "horizontal", # Arrange legend items horizontally
+    plot.title = element_text(face = "bold", size = 16))
+
   
+
