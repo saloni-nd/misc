@@ -152,7 +152,7 @@ ggplot(coded_df, aes(x = Age, y = Death_crude_rate, fill = ICD_long)) +
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   labs(
-    title = "How do causes of death vary with age? (Females)",
+    title = "How do causes of death vary with age?",
     subtitle = "The crude death rate per 100,000 from each ICD cause of death category, between 2018-2021 in the United States",
     x = "Age",
     y = "Death rate",
