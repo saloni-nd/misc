@@ -122,7 +122,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     plot.title = element_text(face = "bold", size = 16))
 
   
-# 3. Create chart showing death rate from each cause, focusing on females
+# 3. Create line charts showing death rate from each cause, focusing on females
 ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
@@ -145,4 +145,25 @@ ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color =
     legend.box = "horizontal", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16))
 
-  
+# 4. Create stacked charts showing death rate from each cause - not sure if death rates should be stacked, although each person is listed with only one cause of death, so they are made to be exclusive
+ggplot(coded_df, aes(x = Age, y = Death_crude_rate, fill = ICD_long)) +
+  geom_area(stat = "identity", alpha = 0.7) + 
+  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
+  scale_fill_manual(values = my_colors) + 
+  scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  labs(
+    title = "How do causes of death vary with age? (Females)",
+    subtitle = "The crude death rate per 100,000 from each ICD cause of death category, between 2018-2021 in the United States",
+    x = "Age",
+    y = "Death rate",
+    fill = "ICD cause of death category",
+    caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
+  ) +
+  theme_minimal() + 
+  theme(
+    strip.text.x = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    legend.position = "bottom", # Place legend at the bottom
+    legend.box = "horizontal", # Arrange legend items horizontally
+    plot.title = element_text(face = "bold", size = 16))
