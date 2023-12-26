@@ -74,7 +74,7 @@ my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a",
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
-  facet_wrap(~ Gender_long, scales = "free_y") + 
+  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
@@ -88,6 +88,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
   theme_minimal() + 
+  guides(fill = guide_legend(title.position = "top")) +
   theme(
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
@@ -99,7 +100,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
 # 2. Create chart showing number of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
-  facet_wrap(~ Gender_long, scales = "free_y") + 
+  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   labs(
@@ -111,6 +112,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
   theme_minimal() + 
+  guides(fill = guide_legend(title.position = "top")) +
   theme(
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
