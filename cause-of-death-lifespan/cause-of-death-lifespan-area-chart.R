@@ -124,7 +124,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
-  scale_fill_manual(values = my_colors) + 
+  scale_color_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   labs(
     title = "How do causes of death vary with age? (Females)",
