@@ -12,7 +12,7 @@ data_folder <- ""
 
 # Import
 raw_df <- read_tsv(paste0(data_folder, "underlying-cause-of-death-single-year-2018-2021.txt"))
-colnames(raw_df) <- c("Notes", "Age_long", "Age", "Gender_long", "Gender", "ICD_long", "ICD", "Deaths_n", "Population", "Death_crude_rate")
+colnames(raw_df) <- c("Notes", "Age_long", "Age", "Gender_long", "Gender", "ICD_long", "ICD", "Deaths_n", "Population", "Death_crude_rate", "Pct_deaths")
 
 # Recode vars
 coded_df <- raw_df
