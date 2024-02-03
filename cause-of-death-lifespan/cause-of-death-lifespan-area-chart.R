@@ -45,10 +45,6 @@ rename_vector <- c(
   "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified" = "Ill-defined conditions"
 )
 
-# Apply the renaming
-coded_df <- coded_df %>%
-  mutate(ICD_long = recode(ICD_long, !!!rename_vector))
-
 # Remove NAs
 coded_df <- coded_df %>% 
               filter(!is.na(Gender), 
@@ -63,6 +59,13 @@ coded_df <- coded_df %>%
   mutate(Total_Deaths_Group = sum(Deaths_n)) %>%
   ungroup() %>%
   mutate(Percentage_Deaths_ICD = (Deaths_n / Total_Deaths_Group) * 100)
+
+# Apply the renaming
+coded_df <- coded_df %>%
+  mutate(ICD_long = recode(ICD_long, !!!rename_vector)) 
+
+# Order the ICD categories in alphabetical order
+coded_df$ICD_long <- factor(coded_df$ICD_long, levels = sort(levels(coded_df$ICD_long)))
 
 # Define a manual palette with 20 distinct colors
 my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", 
