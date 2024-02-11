@@ -24,7 +24,7 @@ births_cleaned <- births_cleaned %>%
 births_cleaned$Births_factor <- cut(births_cleaned$Births,
                                   breaks = seq(260000, 400000, by = 20000),
                                   include.lowest = TRUE,
-                                  labels = paste(seq(260, 380, by = 20), seq(280, 400, by = 20), sep = "-"))
+                                  labels = paste(seq(260, 380, by = 20), seq(280, 400, by = 20), sep = "–"))
 
 # Ensure Births_factor is a factor
 births_cleaned$Births_factor <- as.factor(births_cleaned$Births_factor)
