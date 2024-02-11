@@ -16,21 +16,33 @@ births_raw <- read_tsv(paste0(file_path, "Natality-2007-2022-expanded.txt"), col
 births_cleaned <- births_raw %>% 
   filter(is.na(Notes))
 
-# Make month a factor
+# Make month a factor - order them in reverse order so December is shown at the bottom of the chart
 births_cleaned <- births_cleaned %>%
   mutate(Month = factor(Month, levels = unique(Month[order(-`Month Code`)])))
 
+# Create discrete intervals for number of births - sequence from 260,000 to 400,000 in intervals of 20,000
+births_cleaned$Births_factor <- cut(births_cleaned$Births,
+                                  breaks = seq(260000, 400000, by = 20000),
+                                  include.lowest = TRUE,
+                                  labels = paste(seq(260, 380, by = 20), seq(280, 400, by = 20), sep = "-"))
+
+# Ensure Births_factor is a factor
+births_cleaned$Births_factor <- as.factor(births_cleaned$Births_factor)
+
 # Create heatmap
-ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births)) +
-  geom_tile() + # Use geom_tile for the heatmap squares
-  scale_fill_viridis_c(option = "magma", direction = 1, name = "Births", labels = comma) + # Explicitly use viridis color scale
-  theme_minimal() + # Use a minimal theme
+ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_d(option = "magma") + # Use magma for discrete scale
+  theme_minimal() +
   labs(title = "Births are more common in the summer and autumn",
        subtitle = "Number of births in the United States by month and year",
-       caption = "Data from the CDC Wonder database\nChart by Saloni Dattani",
+       caption = "Data source: CDC Wonder database 2007-2020\nChart by Saloni Dattani",
        x = "",
        y = "",
-       fill = "Number of births") +
-  theme(plot.title = element_text(size = 20)) +
-  scale_x_continuous(breaks = unique(births_cleaned$Year)) + # Ensure all years are labeled
-  theme(axis.text.x = element_text(angle = 0)) # Improve x-axis labels readability
+       fill = "Number of births\n(thousands)") +
+  scale_x_continuous(breaks = unique(births_cleaned$Year)) +
+  theme(axis.text.x = element_text(angle = 0),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.spacing = unit(0, "lines"),
+        plot.margin = margin(1, 1, 1, 1, "cm"))
