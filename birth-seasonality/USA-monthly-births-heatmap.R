@@ -32,7 +32,7 @@ births_cleaned$Births_factor <- as.factor(births_cleaned$Births_factor)
 # Create heatmap
 ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
   geom_tile(color = "white") +
-  scale_fill_viridis_d(option = "magma") + # Use magma for discrete scale
+  scale_fill_viridis_d(option = "magma", guide = guide_legend(reverse = TRUE)) + # Use magma for discrete scale
   theme_minimal() +
   labs(title = "Births are more common between July and September",
        subtitle = "Number of births in the United States by month and year",
