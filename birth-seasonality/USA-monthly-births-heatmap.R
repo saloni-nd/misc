@@ -12,7 +12,7 @@ file_path <- "" # Replace with path to file
 
 births_raw <- read_tsv(paste0(file_path, "Natality-2007-2022-expanded.txt"), col_names = TRUE)
 
-# Remove rows where Notes equals "Total" using filter from the dplyr package
+# Only keep rows where Notes is blank (NA)
 births_cleaned <- births_raw %>% 
   filter(is.na(Notes))
 
