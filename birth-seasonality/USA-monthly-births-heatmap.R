@@ -36,7 +36,7 @@ ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
   theme_minimal() +
   labs(title = "Births are more common in the summer and autumn",
        subtitle = "Number of births in the United States by month and year",
-       caption = "Data source: CDC Wonder database 2007-2020\nChart by Saloni Dattani",
+       caption = "Data source: CDC Wonder database 2007-2022\nChart by Saloni Dattani",
        x = "",
        y = "",
        fill = "Number of births\n(thousands)") +
