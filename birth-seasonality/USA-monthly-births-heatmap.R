@@ -40,10 +40,8 @@ ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
        x = "",
        y = "",
        fill = "Number of births\n(thousands)") +
-  scale_x_continuous(breaks = unique(births_cleaned$Year)) +
+  scale_x_continuous(breaks = unique(births_cleaned$Year)) + 
   theme(axis.text.x = element_text(angle = 0),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.spacing = unit(0, "lines"),
-        plot.margin = margin(1, 1, 1, 1, "cm"),
-        plot.title = element_text(size = 20))
+        panel.grid.major = element_blank(), # Remove gridlines
+        panel.grid.minor = element_blank(), # Remove gridlines
+        plot.title = element_text(size = 20)) # Large title
