@@ -34,7 +34,7 @@ ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
   geom_tile(color = "white") +
   scale_fill_viridis_d(option = "magma") + # Use magma for discrete scale
   theme_minimal() +
-  labs(title = "Births are more common in the summer and autumn",
+  labs(title = "Births are more common between July and September",
        subtitle = "Number of births in the United States by month and year",
        caption = "Data source: CDC Wonder database 2007-2022\nChart by Saloni Dattani",
        x = "",
@@ -45,4 +45,5 @@ ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.spacing = unit(0, "lines"),
-        plot.margin = margin(1, 1, 1, 1, "cm"))
+        plot.margin = margin(1, 1, 1, 1, "cm"),
+        plot.title = element_text(size = 20))
