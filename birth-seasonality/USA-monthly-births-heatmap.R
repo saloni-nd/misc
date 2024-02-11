@@ -34,7 +34,7 @@ ggplot(births_cleaned, aes(x = Year, y = Month, fill = Births_factor)) +
   geom_tile(color = "white") +
   scale_fill_viridis_d(option = "magma", guide = guide_legend(reverse = TRUE)) + # Use magma for discrete scale
   theme_minimal() +
-  labs(title = "Births are more common between July and September",
+  labs(title = "Births rise between July and September",
        subtitle = "Number of births in the United States by month and year",
        caption = "Data source: CDC Wonder database 2007-2022\nChart by Saloni Dattani",
        x = "",
