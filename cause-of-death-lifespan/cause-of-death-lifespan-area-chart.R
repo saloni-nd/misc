@@ -79,11 +79,12 @@ randomize_colors <- function(color_vector) {
 
 randomized_colors <- randomize_colors(my_colors)
 
+
 # 1. Create chart showing share of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
-  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
+  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2, show_axes = "all_x") + 
   scale_fill_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
@@ -102,9 +103,13 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "right", # Place legend at the bottom
-    legend.box = "horizontal", # Arrange legend items horizontally
-    plot.title = element_text(face = "bold", size = 16)) 
+    legend.position = "right", # Place legend at the right
+    legend.box = "vertical", # Arrange legend items horizontally
+    plot.title = element_text(face = "bold", size = 16),
+    panel.grid.major.y = element_blank(), # Remove y-axis major grid lines
+    panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines 
+    axis.text.y = element_text(margin = margin(r = -20)) # Move y-axis text closer to the axis
+  )  
 
 
 # 2. Create chart showing number of deaths from each cause
@@ -127,9 +132,14 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "right", # Place legend at the bottom
-    legend.box = "horizontal", # Arrange legend items horizontally
-    plot.title = element_text(face = "bold", size = 16))
+    legend.position = "bottom", # Place legend at the right
+    legend.box = "vertical", # Arrange legend items horizontally
+    plot.title = element_text(face = "bold", size = 16),
+    panel.grid.major.y = element_blank(), # Remove y-axis major grid lines
+    panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines 
+    axis.text.y = element_text(margin = margin(r = -20)) # Move y-axis text closer to the axis
+  )  
+
 
   
 # 3. Create line charts showing death rate from each cause, focusing on females
