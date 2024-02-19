@@ -84,7 +84,7 @@ randomized_colors <- randomize_colors(my_colors)
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
-  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2, show_axes = "all_x") + 
+  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
   scale_fill_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
