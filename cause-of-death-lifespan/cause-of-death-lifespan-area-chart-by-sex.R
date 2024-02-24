@@ -5,6 +5,7 @@ library(scales)
 # Data source:
 # CDC Wonder https://wonder.cdc.gov/
 # Underlying cause of death -> group by: single-year age group, gender, ICD chapter
+# Tick 'Percent of Total Deaths'
 # Download and save to data_folder
 
 # !!! Download and replace this with path to folder
