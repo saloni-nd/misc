@@ -119,6 +119,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  scale_y_continuous(labels = comma) + # Y-axis labels use comma separator for thousands
   labs(
     title = "How do causes of death vary with age?",
     subtitle = "The number of deaths from each ICD cause of death category, between 2018-2021 in the United States",
@@ -133,7 +134,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "bottom", # Place legend at the right
+    legend.position = "right", # Place legend at the right
     legend.box = "vertical", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16),
     panel.grid.major.y = element_blank(), # Remove y-axis major grid lines
@@ -144,7 +145,8 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 
   
 # 3. Create line charts showing death rate from each cause, focusing on females
-ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
+ggplot(filter(coded_df, Gender=="F"), # Change to males by changing this to M
+       aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
   scale_color_manual(values = my_colors) + 
@@ -163,7 +165,6 @@ ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color =
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "bottom", # Place legend at the bottom
-    legend.box = "horizontal", # Arrange legend items horizontally
+    legend.position = "none", # Place legend at the bottom
     plot.title = element_text(face = "bold", size = 16))
 
