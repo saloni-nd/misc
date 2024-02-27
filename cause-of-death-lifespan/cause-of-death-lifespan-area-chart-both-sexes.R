@@ -37,6 +37,7 @@ rename_vector <- c(
   "Diseases of the musculoskeletal system and connective tissue" = "Musculoskeletal diseases",
   "Diseases of the nervous system" = "Nervous system diseases",
   "Diseases of the respiratory system" = "Respiratory diseases",
+  "Diseases of the ear and mastoid process" = "Ear diseases",
   "Diseases of the skin and subcutaneous tissue" = "Skin diseases",
   "Endocrine, nutritional and metabolic diseases" = "Endocrine diseases",
   "External causes of morbidity and mortality" = "External causes",
@@ -67,6 +68,9 @@ coded_df <- coded_df %>%
 
 # Order the ICD categories in alphabetical order
 coded_df$ICD_long <- factor(coded_df$ICD_long, levels = sort(levels(coded_df$ICD_long)))
+
+# Remove ear diseases, which is negligible or zero
+coded_df <- coded_df %>% filter(ICD_long != "Ear diseases")
 
 # Define a manual palette with 20 distinct colors
 my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", 
@@ -114,9 +118,9 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
 # 2. Create chart showing number of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
-  facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
   scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  scale_y_continuous(labels = comma) + #y-axis labels with commas for thousand separator
   labs(
     title = "How do causes of death vary with age?",
     subtitle = "The number of deaths from each ICD cause of death category, between 2018-2021 in the United States",
@@ -131,7 +135,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "bottom", # Place legend at the right
+    legend.position = "right", # Place legend at the right
     legend.box = "vertical", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16),
     panel.grid.major.y = element_blank(), # Remove y-axis major grid lines
@@ -143,13 +147,13 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 
 
 # 3. Create line charts showing death rate from each cause, focusing on females
-ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
+ggplot(coded_df, aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
   scale_color_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   labs(
-    title = "How do causes of death vary with age? (Females)",
+    title = "How do causes of death vary with age?",
     subtitle = "The crude death rate per 100,000 from each ICD cause of death category, between 2018-2021 in the United States",
     x = "Age",
     y = "Death rate",
@@ -162,7 +166,6 @@ ggplot(filter(coded_df, Gender=="F"), aes(x = Age, y = Death_crude_rate, color =
     strip.text.x = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
     axis.title = element_text(size = 12),
-    legend.position = "bottom", # Place legend at the bottom
-    legend.box = "horizontal", # Arrange legend items horizontally
+    legend.position = "none", # Remove legend
     plot.title = element_text(face = "bold", size = 16))
 
