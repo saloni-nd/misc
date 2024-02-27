@@ -118,7 +118,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
 # 2. Create chart showing number of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
-  scale_fill_manual(values = my_colors) + 
+  scale_fill_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(labels = comma) + #y-axis labels with commas for thousand separator
   labs(
@@ -150,7 +150,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 ggplot(coded_df, aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
-  scale_color_manual(values = my_colors) + 
+  scale_color_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   # scale_y_log10() + # Remove hash to apply log scale to y-axis
   labs(
