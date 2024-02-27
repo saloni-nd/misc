@@ -146,12 +146,13 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 
 
 
-# 3. Create line charts showing death rate from each cause, focusing on females
+# 3. Create line charts showing death rate from each cause
 ggplot(coded_df, aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
   scale_color_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
+  # scale_y_log10() + # Remove hash to apply log scale to y-axis
   labs(
     title = "How do causes of death vary with age?",
     subtitle = "The crude death rate per 100,000 from each ICD cause of death category, between 2018-2021 in the United States",
