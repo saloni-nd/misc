@@ -117,7 +117,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
 ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
   facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
-  scale_fill_manual(values = my_colors) + 
+  scale_fill_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(labels = comma) + # Y-axis labels use comma separator for thousands
   labs(
@@ -149,7 +149,7 @@ ggplot(filter(coded_df, Gender=="F"), # Change to males by changing this to M
        aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
-  scale_color_manual(values = my_colors) + 
+  scale_color_manual(values = randomized_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   labs(
     title = "How do causes of death vary with age? (Females)",
