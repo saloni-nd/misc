@@ -50,10 +50,10 @@ rename_vector <- c(
 # Remove NAs
 coded_df <- coded_df %>% 
   filter(#!is.na(Gender), 
-         !is.na(Age_long), 
-         !is.na(ICD), 
-         !is.na(Deaths_n), 
-         !is.na(Population))
+    !is.na(Age_long), 
+    !is.na(ICD), 
+    !is.na(Deaths_n), 
+    !is.na(Population))
 
 # Calculate the % of deaths in each age and gender group that are in each ICD code
 coded_df <- coded_df %>%
@@ -73,22 +73,17 @@ coded_df$ICD_long <- factor(coded_df$ICD_long, levels = sort(levels(coded_df$ICD
 coded_df <- coded_df %>% filter(ICD_long != "Ear diseases")
 
 # Define a manual palette with 20 distinct colors
-my_colors <- c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", 
-               "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", 
-               "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", 
-               "#17becf", "#9edae5")
-
-randomize_colors <- function(color_vector) {
-  sample(color_vector, length(color_vector)) }
-
-randomized_colors <- randomize_colors(my_colors)
+my_colors <- c("#dbdb8d", "#ff9896", "#1f77b4", "#c49c94", "#7f7f7f",
+               "#c7c7c7", "#d62728", "#e377c2", "#f7b6d2", "#c5b0d5",
+               "#98df8a", "#9edae5", "#ffbb78", "#9467bd", "#aec7e8",
+               "#17becf", "#bcbd22", "#8c564b", "#2ca02c", "#ff7f0e")
 
 # 1. Create chart showing share of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
   #geom_bar(stat = "identity", position = "fill", alpha = 0.7) +
   geom_area(position = "fill", alpha = 0.7) + 
   #facet_wrap(~ Gender_long, scales = "free_y", nrow = 2) + 
-  scale_fill_manual(values = randomized_colors) + 
+  scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(breaks = seq(0, 1, by=0.2)) + # Y-axis breaks for geom_area version (in decimal share)
   #scale_y_continuous(breaks = seq(0, 1, by=0.2), labels = scales::label_percent()) + # Y-axis breaks for geom_bar version (in percentages)
@@ -96,7 +91,7 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     title = "How do causes of death vary with age?",
     subtitle = "The share of deaths from each ICD cause of death category, between 2018-2021 in the United States",
     x = "Age",
-    y = "Share of deaths",
+    y = "",
     fill = "Cause of death category",
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
@@ -110,15 +105,17 @@ ggplot(coded_df, aes(x = Age, y = Percentage_Deaths_ICD, fill = ICD_long)) +
     legend.box = "vertical", # Arrange legend items horizontally
     plot.title = element_text(face = "bold", size = 16),
     panel.grid.major.y = element_blank(), # Remove y-axis major grid lines
-    panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines 
-    axis.text.y = element_text(margin = margin(r = -20)) # Move y-axis text closer to the axis
+    panel.grid.minor.y = element_blank() # Remove y-axis minor grid lines 
+    #axis.text.y = element_text(margin = margin(r = -20)) # Move y-axis text closer to the axis
   )  
 
+ggsave(paste0(data_folder, "cod_lifespan_share.svg"), width=8, height=6)
+ggsave(paste0(data_folder, "cod_lifespan_share.png"), width=8, height=6)
 
 # 2. Create chart showing number of deaths from each cause
 ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
   geom_bar(stat = "identity", alpha = 0.7) + # Number of deaths
-  scale_fill_manual(values = randomized_colors) + 
+  scale_fill_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   scale_y_continuous(labels = comma) + #y-axis labels with commas for thousand separator
   labs(
@@ -150,7 +147,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
 ggplot(coded_df, aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
   geom_line() + # Death rate
   facet_wrap(~ ICD_long, scales = "free_y") + 
-  scale_color_manual(values = randomized_colors) + 
+  scale_color_manual(values = my_colors) + 
   scale_x_continuous(breaks = seq(0, 100, by = 20)) + # X-axis breaks at multiples of 20
   # scale_y_log10() + # Remove hash to apply log scale to y-axis
   labs(
