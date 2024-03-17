@@ -5,7 +5,6 @@ library(scales)
 # Data source:
 # CDC Wonder https://wonder.cdc.gov/
 # Underlying cause of death -> group by: single-year age group, ICD chapter
-# Tick 'Percent of Total Deaths'
 # Download and save to data_folder
 
 # !!! Download and replace this with path to folder
@@ -77,8 +76,8 @@ coded_df <- coded_df %>% filter(ICD_long != "Ear diseases")
 
 # Data source:
 # CDC Wonder https://wonder.cdc.gov/
-# Underlying cause of death -> group by: single-year age group, ICD chapter
-# Tick 'Percent of Total Deaths'
+# Underlying cause of death -> group by: single-year age group, ICD subchapter
+# In section 6, select: V01-Y89 (External causes of morbidity and mortality)
 # Download and save to data_folder
 
 sub_df <- read_tsv(paste0(data_folder, "Underlying Cause of Death, 2018-2021, Single Race - External.txt"))
