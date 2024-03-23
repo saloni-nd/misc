@@ -122,7 +122,7 @@ ggplot(coded_df, aes(x = Age, y = Deaths_n, fill = ICD_long)) +
     title = "How do causes of death vary with age?",
     subtitle = "The number of deaths from each ICD cause of death category, between 2018-2021 in the United States",
     x = "Age",
-    y = "Number of deaths",
+    y = "",
     fill = "ICD cause of death category",
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
@@ -154,7 +154,7 @@ ggplot(coded_df, aes(x = Age, y = Death_crude_rate, color = ICD_long)) +
     title = "How do causes of death vary with age?",
     subtitle = "The crude death rate per 100,000 from each ICD cause of death category, between 2018-2021 in the United States",
     x = "Age",
-    y = "Death rate",
+    y = "",
     color = "ICD cause of death category",
     caption = "Data source: CDC Wonder database, using data on the underlying cause of death from 2018–2021\nChart by Saloni Dattani"
   ) +
