@@ -1,3 +1,8 @@
+### Deprecated
+This dataset is now out of date. I've moved a newer version to my main repo [here](https://github.com/saloni-nd/scientific-discovery/blob/main/vaccination_timeline/vaccine-discovery-dataset.csv).
+
+### Notes
+
 This dataset shows when each vaccine was introduced for humans, for the first time.
 - For each, I've tried to track down the year, with a citation.
 - I've also listed the name of the inventor when they were mentioned incidentally, but several are missing.
