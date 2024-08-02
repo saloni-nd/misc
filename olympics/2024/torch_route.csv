@@ -1,0 +1,74 @@
+title,city,date_start,date_end,tag,url,stage_number
+Lighting Ceremony,Olympia,2024-04-15T22:01:00Z,2024-04-16T10:01:00Z,lighting-ceremony,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/lighting-ceremony,
+Relay in Greece,,2024-04-16T10:02:00Z,2024-04-26T17:06:00Z,relay-in-greece,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/relay-in-greece,
+Handover Ceremony,Athens,2024-04-25T22:01:00Z,2024-04-26T17:07:00Z,handover-ceremony,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/handover-ceremony,
+Crossing the Mediterranean,Marseille,2024-04-26T17:08:00Z,2024-05-07T22:01:00Z,mediterranean-crossing,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/mediterranean-crossing,
+Prologue,Marseille,2024-05-07T22:02:00Z,2024-05-08T20:02:00Z,prologue-marseille,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/prologue-marseille,
+Marseille,Marseille,2024-05-08T22:01:00Z,2024-05-09T21:59:00Z,marseille,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/marseille,1.0
+Var,Toulon,2024-05-09T22:01:00Z,2024-05-10T21:59:00Z,var-toulon,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/var-toulon,2.0
+Alpes-de-Haute-Provence,Manosque,2024-05-10T22:01:00Z,2024-05-11T21:59:00Z,alpes-de-haute-provence-manosque,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/alpes-de-haute-provence-manosque,3.0
+Bouches-du-Rhône,Arles,2024-05-11T22:01:00Z,2024-05-12T21:59:00Z,bouche-du-rhones-arles,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/bouche-du-rhones-arles,4.0
+Millau-Sète-Montpellier,Montpellier,2024-05-12T22:01:00Z,2024-05-13T21:59:00Z,millau-sete-montpellier-montpellier,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/millau-sete-montpellier-montpellier,5.0
+Corsica,Bastia,2024-05-13T22:01:00Z,2024-05-14T21:59:00Z,corse-bastia,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/corse-bastia,6.0
+Pyrénées-Orientales,Perpignan,2024-05-14T22:01:00Z,2024-05-15T21:59:00Z,pyrenees-orientales-perpignan,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/pyrenees-orientales-perpignan,7.0
+Aude,Carcassonne,2024-05-15T22:01:00Z,2024-05-16T21:59:00Z,aude-carcassonne,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/aude-carcassonne,8.0
+Haute-Garonne,Toulouse,2024-05-16T22:01:00Z,2024-05-17T21:59:00Z,haute-garonne-toulouse,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/haute-garonne-toulouse,9.0
+Gers,Auch,2024-05-17T22:01:00Z,2024-05-18T21:59:00Z,gers-auch,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/gers-auch,10.0
+Hautes-Pyrénées,Tarbes,2024-05-18T22:01:00Z,2024-05-19T21:59:00Z,hautes-pyrenees-tarbes,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/hautes-pyrenees-tarbes,11.0
+Pyrénées-Atlantiques,Pau,2024-05-19T22:01:00Z,2024-05-20T21:59:00Z,pyrenees-atlantiques-pau,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/pyrenees-atlantiques-pau,12.0
+Dordogne,Périgueux,2024-05-21T22:01:00Z,2024-05-22T21:59:00Z,dordogne-perigueux,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/dordogne-perigueux,13.0
+Bordeaux and the Libournais,Bordeaux,2024-05-22T22:01:00Z,2024-05-23T21:59:00Z,bordeaux-et-le-libournais-bordeaux,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/bordeaux-et-le-libournais-bordeaux,14.0
+Charente,Angoulême,2024-05-23T22:01:00Z,2024-05-24T21:59:00Z,charente-angouleme,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/charente-angouleme,15.0
+Vienne,Grand Poitiers Futuroscope,2024-05-24T22:01:00Z,2024-05-25T21:59:00Z,vienne-grand-poitiers-futuroscope,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/vienne-grand-poitiers-futuroscope,16.0
+Indre,Châteauroux,2024-05-26T22:01:00Z,2024-05-27T21:59:00Z,indre-chateauroux,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/indre-chateauroux,17.0
+Maine-et-Loire,Angers,2024-05-27T22:01:00Z,2024-05-28T21:59:00Z,maine-et-loire-angers,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/maine-et-loire-angers,18.0
+Mayenne,Laval,2024-05-28T22:01:00Z,2024-05-29T21:59:00Z,mayenne-laval,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/mayenne-laval,19.0
+Calvados,Caen,2024-05-29T22:01:00Z,2024-05-30T21:59:00Z,calvados-caen,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/calvados-caen,20.0
+Manche,Le Mont-Saint-Michel,2024-05-30T22:01:00Z,2024-05-31T21:59:00Z,manche-le-mont-saint-michel,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/manche-le-mont-saint-michel,21.0
+Ille-et-Vilaine,Rennes,2024-05-31T22:01:00Z,2024-06-01T21:59:00Z,ille-et-vilaine-rennes,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/ille-et-vilaine-rennes,22.0
+Deux-Sèvres,Niort,2024-06-01T22:01:00Z,2024-06-02T21:59:00Z,deux-sevres-niort,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/deux-sevres-niort,23.0
+Vendée,Les Sables-d'Olonne,2024-06-03T22:01:00Z,2024-06-04T21:59:00Z,vendee-les-sables-d-olonne,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/vendee-les-sables-d-olonne,24.0
+Between Loire and Atlantique,La Baule-Escoublac,2024-06-04T22:01:00Z,2024-06-05T21:59:00Z,entre-loire-et-atlantique,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/entre-loire-et-atlantique,25.0
+Morbihan,Vannes,2024-06-05T22:01:00Z,2024-06-06T21:59:00Z,morbihan-vannes,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/morbihan-vannes,26.0
+Finistère,Brest,2024-06-06T22:01:00Z,2024-06-07T21:59:00Z,finistere-brest,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/finistere-brest,27.0
+French Guiana,Cayenne,2024-06-08T22:01:00Z,2024-06-09T21:59:00Z,guyane-cayenne,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/guyane-cayenne,28.0
+New Caledonia,Nouméa,2024-06-10T22:01:00Z,2024-06-11T21:59:00Z,nouvelle-caledonie-noumea,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/nouvelle-caledonie-noumea,29.0
+Réunion,Saint-Denis,2024-06-11T22:01:00Z,2024-06-12T21:59:00Z,la-reunion-saint-denis,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/la-reunion-saint-denis,30.0
+French Polynesia,Pīra'e-Pape'ete,2024-06-12T22:01:00Z,2024-06-13T21:59:00Z,polynesie-francaise-papeete,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/polynesie-francaise-papeete,31.0
+Guadeloupe,Baie-Mahault,2024-06-14T22:01:00Z,2024-06-15T21:59:00Z,guadeloupe-baie-mahault,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/guadeloupe-baie-mahault,32.0
+Martinique,Fort-de-France,2024-06-16T22:01:00Z,2024-06-17T21:59:00Z,martinique-fort-de-france,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/martinique-fort-de-france,33.0
+Alpes-Maritimes,Nice,2024-06-17T22:01:00Z,2024-06-18T21:59:00Z,alpes-maritimes-nice,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/alpes-maritimes-nice,34.0
+Vaucluse,Avignon,2024-06-18T22:01:00Z,2024-06-19T21:59:00Z,vaucluse-avignon,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/vaucluse-avignon,35.0
+Drôme,Valence,2024-06-19T22:01:00Z,2024-06-20T21:59:00Z,drome-valence,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/drome-valence,36.0
+Vichy,Vichy,2024-06-20T22:01:00Z,2024-06-21T21:59:00Z,vichy,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/vichy,37.0
+Loire,Saint-Etienne,2024-06-21T22:01:00Z,2024-06-22T21:59:00Z,loire-saint-etienne,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/loire-saint-etienne,38.0
+Haute-Savoie,Chamonix-Mont-Blanc,2024-06-22T22:01:00Z,2024-06-23T21:59:00Z,haute-savoie-chamonix,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/haute-savoie-chamonix,39.0
+Doubs,Besançon,2024-06-24T22:01:00Z,2024-06-25T21:59:00Z,doubs-besancon,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/doubs-besancon,40.0
+The European Collectivity of Alsace,Strasbourg,2024-06-25T22:01:00Z,2024-06-26T21:59:00Z,collectivite-europeenne-d-alsace-strasbourg,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/collectivite-europeenne-d-alsace-strasbourg,41.0
+Moselle,Metz,2024-06-26T22:01:00Z,2024-06-27T21:59:00Z,moselle-metz,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/moselle-metz,42.0
+Haute-Marne,Saint-Dizier,2024-06-27T22:01:00Z,2024-06-28T21:59:00Z,haute-marne-saint-dizier,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/haute-marne-saint-dizier,43.0
+Meuse,Verdun,2024-06-28T22:01:00Z,2024-06-29T21:59:00Z,meuse-verdun,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/meuse-verdun,44.0
+Marne,Reims,2024-06-29T22:01:00Z,2024-06-30T21:59:00Z,marne-reims,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/marne-reims,45.0
+Nord,Lille,2024-07-01T22:01:00Z,2024-07-02T21:59:00Z,nord-lille,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/nord-lille,46.0
+Pas-de-Calais,Lens-Liévin,2024-07-02T22:01:00Z,2024-07-03T21:59:00Z,pas-de-calais-lens-lievin,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/pas-de-calais-lens-lievin,47.0
+Somme,Amiens,2024-07-03T22:01:00Z,2024-07-04T21:59:00Z,somme-amiens,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/somme-amiens,48.0
+Seine-Maritime,Le Havre,2024-07-04T22:01:00Z,2024-07-05T21:59:00Z,seine-maritime-le-havre,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/seine-maritime-le-havre,49.0
+Eure,Vernon,2024-07-05T22:01:00Z,2024-07-06T21:59:00Z,eure-vernon,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/eure-vernon,50.0
+C'Chartres,Chartres,2024-07-06T22:01:00Z,2024-07-07T21:59:00Z,c-chartres-chartres,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/c-chartres-chartres,51.0
+Loir-et-Cher,Blois,2024-07-07T22:01:00Z,2024-07-08T21:59:00Z,loir-et-cher-blois,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/loir-et-cher-blois,52.0
+Loiret,Orléans,2024-07-09T22:01:00Z,2024-07-10T21:59:00Z,loiret-orleans,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/loiret-orleans,53.0
+Yonne,Auxerre,2024-07-10T22:01:00Z,2024-07-11T21:59:00Z,yonne-auxerre,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/yonne-auxerre,54.0
+Côte-d'Or,Dijon,2024-07-11T22:01:00Z,2024-07-12T21:59:00Z,cote-d-or-dijon,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/cote-d-or-dijon,55.0
+Aube,Troyes,2024-07-12T22:01:00Z,2024-07-13T21:59:00Z,aube-troyes,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/aube-troyes,56.0
+"Paris, Day 1",Place de l’Hôtel de Ville,2024-07-13T22:01:00Z,2024-07-14T21:59:00Z,paris-paris,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/paris-paris,57.0
+"Paris, Day 2",Place de la République,2024-07-14T22:01:00Z,2024-07-15T21:59:00Z,paris-paris-2,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/paris-paris-2,58.0
+Aisne,Saint-Quentin,2024-07-16T22:01:00Z,2024-07-17T21:59:00Z,aisne-saint-quentin,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/aisne-saint-quentin,59.0
+Oise,Beauvais,2024-07-17T22:01:00Z,2024-07-18T21:59:00Z,oise-beauvais,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/oise-beauvais,60.0
+Val-d'Oise,Soisy-sous-Montmorency,2024-07-18T22:01:00Z,2024-07-19T21:59:00Z,val-d-oise-soisy-sous-montmorency,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/val-d-oise-soisy-sous-montmorency,61.0
+Seine-et-Marne,Meaux,2024-07-19T22:01:00Z,2024-07-20T21:59:00Z,seine-et-marne-meaux,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/seine-et-marne-meaux,62.0
+Val-de-Marne,Créteil,2024-07-20T22:01:00Z,2024-07-21T21:59:00Z,val-de-marne-creteil,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/val-de-marne-creteil,63.0
+Essonne,Evry-Courcouronnes,2024-07-21T22:01:00Z,2024-07-22T21:59:00Z,essonne-evry-courcouronnes,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/essonne-evry-courcouronnes,64.0
+Yvelines,Versailles,2024-07-22T22:01:00Z,2024-07-23T21:59:00Z,yvelines-versailles,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/yvelines-versailles,65.0
+Hauts-de-Seine,Nanterre > L’Arche de la Défense,2024-07-23T22:01:00Z,2024-07-24T21:59:00Z,hauts-de-seine-nanterre,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/hauts-de-seine-nanterre,66.0
+Seine-Saint-Denis,Parc Georges-Valbon,2024-07-24T22:01:00Z,2024-07-25T21:59:00Z,seine-saint-denis-la-courneuve,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/seine-saint-denis-la-courneuve,67.0
+Epilogue,Paris,2024-07-25T22:01:00Z,2024-07-26T21:59:00Z,epilogue,https://olympics.com/en/paris-2024/olympic-torch-relay/stages/epilogue,68.0
