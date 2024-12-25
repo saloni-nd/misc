@@ -62,7 +62,7 @@ ggplot(data=ab_drugs, aes(x=Year,
        x="",
        y="",
        fill="Type",
-       caption="Sources: Coussens et al. (2018)") +
+       caption="Source: Coussens et al. (2018). Better living through chemistry: Addressing emerging antibiotic resistance.") +
   coord_cartesian(xlim=c(1930,2024)) +
   scale_y_reverse() + # Flip y-axis
   scale_x_continuous(breaks= seq(1930,2020,by=10), 
