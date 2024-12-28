@@ -71,4 +71,5 @@ ggplot(data=ab_drugs, aes(x=Year,
 
 
 ggsave(paste0(file_path, "antibiotics_timeline_us_approvals.svg"),height=8,width=10)
+ggsave(paste0(file_path, "antibiotics_timeline_us_approvals.png"),height=8,width=10)
 
