@@ -35,6 +35,7 @@ age_lines <- cohort_df %>%
     scaled_height = ASFR / max_asfr * 5  # Calculate scaled height for ASFR
   )
 
+### X axis: Year
 
 # Ridgeline plot with correctly positioned vertical lines
 ggplot(cohort_df, aes(x = Year, 
@@ -43,7 +44,7 @@ ggplot(cohort_df, aes(x = Year,
                       group = Cohort,
                       fill = CCF)) +
   geom_ridgeline(scale = 5, color = NA, na.rm = TRUE) + # Draw ridgelines first
-  geom_ridgeline(scale = 5, fill = NA, color = "white", na.rm = TRUE) + # Add outline for ridgelines
+  geom_ridgeline(scale = 5, fill = NA, color = "grey", na.rm = TRUE) + # Add outline for ridgelines
   scale_fill_gradient(name = "Completed Fertility", low = "#4F171E", high = "#A4303F") + # Gradient fill
   scale_x_continuous(
     limits = c(1930, 2020),
@@ -74,4 +75,37 @@ ggplot(cohort_df, aes(x = Year,
   )
 
 
+### X axis: Age
 
+# Ridgeline plot with correctly positioned vertical lines
+ggplot(cohort_df, aes(x = Age, 
+                      y = reorder(factor(Cohort), -Cohort), 
+                      height = ASFR / max_asfr, 
+                      group = Cohort,
+                      fill = CCF)) +
+  geom_ridgeline(scale = 7, color = NA, na.rm = TRUE) + # Draw ridgelines first
+  geom_ridgeline(scale = 7, fill = NA, color = "grey", na.rm = TRUE) + # Add outline for ridgelines
+  scale_fill_gradient(name = "Completed Fertility", low = "#4F171E", high = "#A4303F") + # Gradient fill
+  scale_y_discrete(breaks = seq(1920, 1970, by = 5)) +
+  labs(
+    title = "Visualizing the US Baby Boom",
+    subtitle = "Age-specific fertility rate",
+    x = "Age",
+    y = "Birth cohort",
+    caption = "Source: Human Fertility Database (2024)"
+  ) +
+  theme_minimal(base_family = "sans") +
+  theme(
+    panel.background = element_rect(fill = "black", color = "black"),
+    plot.background = element_rect(fill = "black", color = "black"),
+    panel.grid.major = element_line(color = "#292E24", size = 0.5), # Set gridlines to dark grey
+    panel.grid.minor = element_blank(),                              # Remove minor gridlines
+    panel.grid.major.x = element_line(color = "#292E24", size = 0.5), # Add dark grey vertical gridlines
+    axis.text = element_text(color = "white"),
+    axis.title = element_text(color = "white"),
+    plot.title = element_text(color = "white", face = "bold", size = 16),
+    plot.subtitle = element_text(color = "white", size = 12),
+    plot.caption = element_text(color = "white", size = 10),
+    axis.ticks = element_line(color = "white"),
+    legend.position = "none"
+  )
