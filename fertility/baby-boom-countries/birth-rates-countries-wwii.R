@@ -2,7 +2,7 @@ library(tidyverse)
 library(extrafont)
 
 # Import Lato font
-font_import(pattern = "Lato")
+font_import(pattern = c("Lato", "Playfair Display"))
 loadfonts(device = "mac") # use "win" for Windows, "mac" for macOS
 
 data_folder <- ""
@@ -10,7 +10,7 @@ data_folder <- ""
 # Fetch the data
 df <- read.csv("https://ourworldindata.org/grapher/long-run-birth-rate.csv?v=1&csvType=full&useColumnShortNames=true")
 
-# Filter for countries with non-NA TFR data in 1935
+# Filter for countries with non-NA birth rate data in 1935
 countries_1935 <- unique(df$Entity[!is.na(df$birth_rate_hist) & df$Year == 1939])
 
 # Filter the dataset to include only those countries
@@ -48,6 +48,7 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
   # Labels and style
   labs(
     title = "Birth rate",
+    subtitle = "A historical perspective of birth rates during WWII",
     x = "Year",
     y = "",
     caption = "Source: Human Mortality Database (2024)"
@@ -59,13 +60,15 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
     panel.background = element_rect(fill = "white", color = NA), # White background
     plot.background = element_rect(fill = "white", color = NA),  # White overall background
     
-    # Text in grey
-    strip.text = element_text(size = 12, face = "bold", color = "grey50"), 
+    # Text styling
+    strip.text = element_text(size = 12, face = "bold", color = "grey30"), 
     text = element_text(family = "Lato", color = "grey50"),
     axis.text = element_text(size = 10, color = "grey50"),
     axis.title = element_text(size = 12, color = "grey50"),
-    plot.title = element_text(size = 14, face = "bold", color = "grey50"),
-    plot.caption = element_text(size = 10, color = "grey50"),
+    plot.title = element_text(size = 25, family = "Playfair Display SemiBold", color = "grey10"),
+    plot.subtitle = element_text(size = 15, face = "plain", family = "Lato", color = "grey30"),
+    plot.caption = element_text(size = 10, color = "grey50", hjust = 0), # Left-align caption
+    plot.caption.position = "plot",                                   # Position caption below the plot
     
     # Lines in grey
     panel.grid = element_blank(),                        # Remove grid lines
@@ -74,6 +77,12 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
     panel.border = element_rect(color = "grey70", fill = NA) # Axis lines in grey
   )
 
-
-ggsave(paste0(data_folder, "birth-rates-countries-wwii.svg"))
-
+# Save the plot with specified pixel dimensions
+ggsave(
+  filename = paste0(data_folder, "birth-rates-countries-wwii.svg"),
+  plot = last_plot(),                # Saves the last plot
+  width = 11.8,
+  height = 15.2,
+  units = "in",                      # Specify units as inches
+  dpi = 300                          # Set resolution to 300 DPI
+)
