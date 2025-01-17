@@ -1,6 +1,7 @@
 library(tidyverse)
 library(scales)
 library(extrafont)
+library(ggnewscale)
 
 # Import fonts
 font_import(pattern = c("Lato", "Playfair Display"))
@@ -43,13 +44,20 @@ annotations <- tibble(
 )
 
 # Create combined plot
-combined_plot <- ggplot(combined_data, aes(x = Year, y = 1, fill = NormalizedValue)) +
-  geom_tile(color = "white", size = 0.2) +
-  scale_fill_gradient(
-    low = "white", 
-    high = "red", 
-    na.value = "lightgrey"
+combined_plot <- ggplot() +
+  geom_tile(
+    data = combined_data %>% filter(Metric == "Cases"), 
+    aes(x = Year, y = 1, fill = NormalizedValue),
+    color = "white", size = 0.2
   ) +
+  scale_fill_gradient(low = "white", high = "red", na.value = "lightgrey") +
+  new_scale_fill() + # Allow a new fill scale
+  geom_tile(
+    data = combined_data %>% filter(Metric == "Deaths"), 
+    aes(x = Year, y = 1, fill = NormalizedValue),
+    color = "white", size = 0.2
+  ) +
+  scale_fill_gradient(low = "white", high = "purple", na.value = "lightgrey") +
   scale_x_continuous(
     breaks = seq(floor(min(combined_data$Year) / 10) * 10, 
                  ceiling(max(combined_data$Year) / 10) * 10, by = 10),
@@ -61,12 +69,9 @@ combined_plot <- ggplot(combined_data, aes(x = Year, y = 1, fill = NormalizedVal
   facet_wrap(~PanelTitle, ncol = 1, strip.position = "top") +  # Each panel on its own line
   theme_void() +
   theme(
-    # Background and borders
     panel.background = element_rect(fill = "white", color = NA), 
     plot.background = element_rect(fill = "white", color = NA),  
     panel.border = element_rect(color = "black", size = 0.5, fill = NA), 
-    
-    # Text styling
     strip.text = element_text(size = 12, face = "bold", color = "grey30", hjust = 0), 
     text = element_text(family = "Lato", color = "grey50"),
     axis.ticks.x = element_line(color = "black"),
@@ -86,6 +91,8 @@ combined_plot <- ggplot(combined_data, aes(x = Year, y = 1, fill = NormalizedVal
     y = NULL, 
     fill = NULL
   )
+
+combined_plot
 
 # Save plot
 ggsave(paste0(data_folder, "combined-vaccine-impact-US-stripe.svg"), combined_plot, width = 12, height = 12)
