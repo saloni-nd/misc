@@ -71,12 +71,15 @@ combined_plot <- ggplot() +
   geom_vline(data = annotations, aes(xintercept = AnnotationYear), color = "black", size = 0.8) +
   geom_text(data = annotations, aes(x = AnnotationYear + 0.5, y = 1.2, label = AnnotationLabel), 
             inherit.aes = FALSE, color = "black", hjust = 0, size = 4, family = "Lato") +
-  facet_wrap(~PanelTitle, ncol = 1, strip.position = "top") +  # Each panel on its own line
+  facet_wrap(~PanelTitle, 
+             ncol = 1, # Each panel on one line
+             strip.position = "left") +
+            # scales = "free_x") +  # Each panel has its own timeline
   theme_void() +
   theme(
     panel.background = element_rect(fill = "white", color = NA), 
     plot.background = element_rect(fill = "white", color = NA),  
-    panel.border = element_rect(color = "black", size = 0.5, fill = NA), 
+    panel.border = element_rect(color = "grey50", size = 0.5, fill = NA), 
     strip.text = element_text(size = 12, face = "bold", color = "grey30", hjust = 0), 
     text = element_text(family = "Lato", color = "grey50"),
     axis.ticks.x = element_line(color = "black"),
