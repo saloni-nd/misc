@@ -18,9 +18,10 @@ measles_df <- read.csv("https://ourworldindata.org/grapher/measles-cases-and-dea
 colnames(measles_df) <- c("Entity", "Code", "Year", "Cases", "Deaths")
 
 # Function to process data
-process_data <- function(df, disease) {
+process_data <- function(df, disease, full_years) {
   df %>%
     pivot_longer(cols = c("Cases", "Deaths"), names_to = "Metric", values_to = "Value") %>%
+    complete(Year = full_years, Metric = c("Cases", "Deaths"), fill = list(Value = NA)) %>%
     group_by(Metric) %>%
     mutate(NormalizedValue = (Value - min(Value, na.rm = TRUE)) / 
              (max(Value, na.rm = TRUE) - min(Value, na.rm = TRUE))) %>%
@@ -28,9 +29,13 @@ process_data <- function(df, disease) {
     mutate(PanelTitle = paste(disease, Metric, sep = " "))
 }
 
+# Get the full range of years across both datasets
+full_years <- seq(min(c(min(polio_df$Year), min(measles_df$Year))),
+                  max(c(max(polio_df$Year), max(measles_df$Year))))
+
 # Process datasets
-polio_long <- process_data(polio_df, "Polio")
-measles_long <- process_data(measles_df, "Measles")
+polio_long <- process_data(polio_df, "Polio", full_years)
+measles_long <- process_data(measles_df, "Measles", full_years)
 
 # Combine datasets
 combined_data <- bind_rows(polio_long, measles_long)
