@@ -50,14 +50,14 @@ combined_plot <- ggplot() +
     aes(x = Year, y = 1, fill = NormalizedValue),
     color = "white", size = 0.2
   ) +
-  scale_fill_gradient(low = "white", high = "red", na.value = "lightgrey") +
+  scale_fill_gradient(low = "white", high = "purple", na.value = "lightgrey") +
   new_scale_fill() + # Allow a new fill scale
   geom_tile(
     data = combined_data %>% filter(Metric == "Deaths"), 
     aes(x = Year, y = 1, fill = NormalizedValue),
     color = "white", size = 0.2
   ) +
-  scale_fill_gradient(low = "white", high = "purple", na.value = "lightgrey") +
+  scale_fill_gradient(low = "white", high = "red", na.value = "lightgrey") +
   scale_x_continuous(
     breaks = seq(floor(min(combined_data$Year) / 10) * 10, 
                  ceiling(max(combined_data$Year) / 10) * 10, by = 10),
