@@ -1,5 +1,6 @@
 library(tidyverse)
 library(extrafont)
+library(scales)
 
 # Import Lato font
 font_import(pattern = c("Lato", "Playfair Display"))
@@ -28,7 +29,8 @@ filtered_data <- filtered_data[!(filtered_data$Entity %in% c("England and Wales"
 filtered_data <- filtered_data %>%
   group_by(Entity) %>%
   complete(Year = full_seq(Year, 1), fill = list(birth_rate_hist = NA)) %>%
-  ungroup()
+  ungroup() %>%
+  filter(Year > 1910)
 
 
 # Create the faceted plot
@@ -42,19 +44,24 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
             alpha = 0.2, 
             inherit.aes = FALSE) +
   # Add line plot
-  geom_line(na.rm = TRUE, color = "purple") +
+  geom_line(na.rm = TRUE, color = "#970046") +
   # Facet by Country
   facet_wrap(~ Entity, ncol = 3, nrow = 5, scales = "free_y") +
   # Labels and style
   labs(
     title = "Birth rate",
-    subtitle = "A historical perspective of birth rates during WWII",
+    subtitle = "Number of births per 1,000 people.",
     x = "Year",
     y = "",
     caption = "Source: Human Mortality Database (2024)"
   ) +
-  scale_x_continuous(limits = c(1910, 2024)) +
-  theme_minimal() +
+  scale_y_continuous(
+    expand = c(0, 0),                            # Remove margin at the bottom
+    limits = c(0,35),
+    breaks = seq(0, 30, by = 10)) +
+  scale_x_continuous(
+    limits = c(1910, 2024),
+    breaks = seq(1925, 2025, by = 25)) +
   theme(
     # Background
     panel.background = element_rect(fill = "white", color = NA), # White background
