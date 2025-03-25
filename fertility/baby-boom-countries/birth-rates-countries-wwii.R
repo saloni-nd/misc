@@ -33,7 +33,6 @@ filtered_data <- filtered_data %>%
   filter(Year > 1910)
 
 
-# Create the faceted plot
 ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
   # Highlight WWII period
   geom_rect(aes(xmin = wwii_start, 
@@ -57,14 +56,14 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
   ) +
   scale_y_continuous(
     expand = c(0, 0),                            # Remove margin at the bottom
-    limits = c(0,35),
+    limits = c(0, 35),
     breaks = seq(0, 30, by = 10)) +
   scale_x_continuous(
     limits = c(1910, 2024),
     breaks = seq(1925, 2025, by = 25)) +
   theme(
-    # Background
-    panel.background = element_rect(fill = "white", color = NA), # White background
+    # Background for each panel
+    panel.background = element_rect(fill = "white", color = NA), # Light-grey panel backgrounds
     plot.background = element_rect(fill = "white", color = NA),  # White overall background
     
     # Text styling
@@ -77,11 +76,15 @@ ggplot(filtered_data, aes(x = Year, y = birth_rate_hist)) +
     plot.caption = element_text(size = 10, color = "grey50", hjust = 0), # Left-align caption
     plot.caption.position = "plot",                                   # Position caption below the plot
     
-    # Lines in grey
-    panel.grid = element_blank(),                        # Remove grid lines
-    axis.ticks = element_line(color = "grey70"),         # Axis ticks in grey
-    axis.ticks.length = unit(0.2, "cm"),                 # Customize tick length
-    panel.border = element_rect(color = "grey70", fill = NA) # Axis lines in grey
+    # Grid lines
+    panel.grid.major.x = element_blank(),                              # Remove vertical grid lines
+    panel.grid.major.y = element_line(color = "grey95"),               # Horizontal grid lines in light grey
+    panel.grid.minor = element_blank(),                                 # Remove minor grid lines
+   
+    # Remove solid y-axis and frame
+    axis.ticks = element_line(color = "grey95"),                      # Axis ticks in grey
+    axis.ticks.length = unit(0.2, "cm"),                              # Customize tick length
+    panel.border = element_blank()                                     # Remove panel border
   )
 
 # Save the plot with specified pixel dimensions

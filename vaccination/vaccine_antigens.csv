@@ -1,0 +1,61 @@
+Year,Vaccine,Antigens
+1900,Smallpox,198
+1920,Smallpox,198
+1920,WC-Pertussis,3000
+1940,Smallpox,198
+1940,Diphtheria,1
+1940,Tetanus,1
+1940,WC-Pertussis,3000
+1940,Polio,15
+1960,Smallpox,198
+1960,Diphtheria,1
+1960,Tetanus,1
+1960,WC-Pertussis,3000
+1960,Polio,15
+1980,Diphtheria,1
+1980,Tetanus,1
+1980,WC-Pertussis,3000
+1980,Polio,15
+1980,Measles,10
+1980,Mumps,9
+1980,Rubella,5
+2000,Diphtheria,1
+2000,Tetanus,1
+2000,AC-Pertussis,5
+2000,Polio,15
+2000,Measles,10
+2000,Mumps,9
+2000,Rubella,5
+2000,Hib,2
+2000,Varicella,69
+2000,Pneumococcus,14
+2000,Hepatitis B,1
+2020,Diphtheria,1
+2020,Tetanus,1
+2020,AC-Pertussis,5
+2020,Polio,15
+2020,MMR,24
+2020,Hib,2
+2020,Varicella,69
+2020,Hepatitis A,4
+2020,Hepatitis B,1
+2020,Rotavirus,15
+2020,Influenza,14
+2020,Pneumococcus,14
+2020,HPV,9
+2020,Meningococcus,5
+2021,Diphtheria,1
+2021,Tetanus,1
+2021,AC-Pertussis,5
+2021,Polio,15
+2021,MMR,24
+2021,Hib,2
+2021,Varicella,69
+2021,Hepatitis A,4
+2021,Hepatitis B,1
+2021,Rotavirus,15
+2021,Influenza,14
+2021,Pneumococcus,14
+2021,COVID-19,1
+2021,HPV,9
+2021,Meningococcus,5
