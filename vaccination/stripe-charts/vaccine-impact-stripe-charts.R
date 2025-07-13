@@ -8,16 +8,21 @@ font_import(pattern = c("Lato", "Playfair Display"))
 loadfonts(device = "mac") # use "win" for Windows, "mac" for macOS
 
 # Load dataset
-vpd_raw <- read.csv("vpd-cases-deaths.csv")
+vpd_raw <- read.csv("https://raw.githubusercontent.com/saloni-nd/misc/refs/heads/main/vaccination/stripe-charts/vpd-cases-deaths.csv")
 
 # Rename columns
 vpd_df <- vpd_raw %>%
-            dplyr::select(Entity, Year, Pertussis.cases, Pertussis.deaths, Mumps.cases, Mumps.deaths, Number.of.measles.cases, Measles.deaths, Diphtheria.cases, Diphtheria.deaths, Reported.polio.cases, Polio.deaths, Rubella.cases) %>%
-            rename(Measles.cases = Number.of.measles.cases) %>%
-            rename(Polio.cases = Reported.polio.cases)
+  dplyr::select(Entity, Year, Pertussis.cases, Pertussis.deaths, Mumps.cases, Mumps.deaths, Number.of.measles.cases, Measles.deaths, Diphtheria.cases, Diphtheria.deaths, Reported.polio.cases, Polio.deaths, Rubella.cases) %>%
+  rename(Measles.cases = Number.of.measles.cases) %>%
+  rename(Polio.cases = Reported.polio.cases)
 
-# Define the full year range
-full_years <- 1910:2024
+
+full_df <- expand.grid(
+  Entity = unique(vpd_df$Entity),
+  Year = 1910:2024
+)
+# Ensuring there is a row for each year even if there isn't any data for that year
+vpd_df <- merge(vpd_df, full_df, by = c("Entity", "Year"), all = TRUE) 
 
 # Reshape the dataset
 vpd_long <- vpd_df %>%
@@ -40,7 +45,7 @@ vpd_long <- vpd_df %>%
   select(Entity, Year, Disease, Metric, PanelTitleRaw, Value) %>%
   # Fill in the dataset so there is a row for each year between 1910 and 2024, and the values are set to NA if there's nothing there
   complete(
-    Year = full_years,
+    Year = unique(Year),
     Disease = unique(Disease),
     Metric = c("Cases", "Deaths"),
     fill = list(Value = NA)
@@ -71,11 +76,13 @@ annotations <- expand_grid(
       Disease == "Measles" ~ 1963,
       Disease == "Mumps" ~ 1967,
       Disease == "Pertussis" ~ 1914,
-      Disease == "Polio" ~ 1955
+      Disease == "Polio" ~ 1955,
+      Disease == "Rubella" ~ 1969
     ),
     AnnotationLabel = paste(Disease, "vaccine introduced")
   ) %>%
-  select(PanelTitleRaw, AnnotationYear, AnnotationLabel)
+  select(PanelTitleRaw, AnnotationYear, AnnotationLabel) %>% 
+  filter(PanelTitleRaw != "Rubella.deaths")
 
 
 # Create combined plot
@@ -104,11 +111,11 @@ combined_plot <- ggplot() +
   # Add line for year of vaccine introduction
   geom_vline(data = annotations, aes(xintercept = AnnotationYear), color = "black", size = 0.8) +
   #geom_text(data = annotations, aes(x = AnnotationYear + 0.5, y = 1.2, label = AnnotationLabel), 
-   #         inherit.aes = FALSE, color = "black", hjust = 0, size = 4, family = "Lato") +
+  #         inherit.aes = FALSE, color = "black", hjust = 0, size = 4, family = "Lato") +
   facet_wrap(~PanelTitleRaw, 
              ncol = 1, # Each panel on one line
              strip.position = "left") +
-            # scales = "free_x") +  # Each panel has its own timeline
+  # scales = "free_x") +  # Each panel has its own timeline
   theme_void() +
   theme(
     panel.background = element_rect(fill = "white", color = NA), 
