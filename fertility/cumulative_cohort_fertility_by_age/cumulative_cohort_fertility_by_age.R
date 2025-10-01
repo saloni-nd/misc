@@ -1,5 +1,11 @@
 library(tidyverse)
 
+## Download the data:
+## https://www.humanfertility.org/
+## Choose a country
+## Under `Cumulative fertility rates`, download the table `All birth orders combined` as a txt file
+
+
 file_path <- "/misc/fertility/cumulative_cohort_fertility_by_age/"
 
 cfr_df <- read_table(
