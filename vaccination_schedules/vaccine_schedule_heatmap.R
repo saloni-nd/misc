@@ -42,7 +42,7 @@ who_schedules <- who_schedules %>%
     Vaccine = ANTIGEN
   )
 
-# Recode names
+# Recode names - refer to names on the right later on
 who_schedules <- who_schedules %>%
   mutate(
     Vaccine = recode(
@@ -119,7 +119,7 @@ ggsave(paste0(filepath, country_select, "-schedule-heatmap.png"), height=5, widt
 
 # BY VACCINE
 
-vaccine_select <- "Hep A"
+vaccine_select <- "Rotavirus" # choose a vaccine
 
 # Select countries to compare
 select_countries <- c("Denmark", 
