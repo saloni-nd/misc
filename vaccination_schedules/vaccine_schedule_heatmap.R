@@ -24,7 +24,7 @@ who_schedules <- who_schedules %>%
       "No"      = "Not routinely administered",
       "Yes"     = "Universal",
       "Yes (R)" = "Specific risk groups",
-      "Yes (O)" = "Outbreaks",
+      "Yes (O)" = "During outbreaks",
       "Yes (P)" = "Partial"
     )
   ) %>%
@@ -54,11 +54,11 @@ who_schedules <- who_schedules %>%
       "Mumps"       = "Mumps",
       "Mmcv"        = "Meningococcal",
       "Mcv2"        = "Measles (2nd dose)",
-      "Ipv" = "Polio (IPV)",
+      "Ipv"         = "Polio (IPV)",
       "Influenza"   = "Influenza",
       "Hpv"         = "HPV",
       "Hib"         = "Haemophilus influenzae b",
-      "Hepb bd" = "Hep B birth dose",
+      "Hepb bd"     = "Hep B birth dose",
       "Hepa"        = "Hep A",
       "Ap"          = "Pertussis (acellular)"
     )
@@ -72,16 +72,18 @@ schedule_cols <- c(
   "Not introduced" = "grey85",
   "Not routinely administered" = "#F6C27A",  # pastel orange
   "Specific risk groups" = "#C7B3E5",         # pastel purple
+  "Partial" =  "#F8C8DC",                    # pastel pink
   "Universal" = "#A8D8F0"                     # pastel light blue
 )
 
 year_range <- range(who_schedules$Year, na.rm = TRUE)
 
-# USA
+# BY COUNTRY
 
-# Get USA schedule, and apply fills
-usa_sch <- who_schedules %>%
-  filter(Code == "USA") %>% 
+country_select <- "United States of America" # select a country
+
+country_sch <- who_schedules %>%
+  filter(Entity == country_select) %>% 
   complete( # Fill grid with all years, so blank years say not introduced
     Vaccine,
     Year = seq(year_range[1], year_range[2]),
@@ -89,12 +91,12 @@ usa_sch <- who_schedules %>%
   ) 
 
 # Plot heatmap
-ggplot(usa_sch, aes(x = Year, y = factor(Vaccine, levels = rev(sort(unique(Vaccine)))), fill = Schedule)) +
+ggplot(country_sch, aes(x = Year, y = factor(Vaccine, levels = rev(sort(unique(Vaccine)))), fill = Schedule)) +
   geom_tile(color = "white", linewidth = 0.2) +
   scale_x_continuous(breaks = scales::pretty_breaks()) +
   scale_fill_manual(values = schedule_cols,drop = FALSE) +
   labs(
-    title = "What's in the vaccination schedule in the United States?",
+    title = paste0("What's in the vaccination schedule in ", country_select, "?"),
     x = "Year",
     y = "",
     fill = "",
@@ -112,25 +114,53 @@ ggplot(usa_sch, aes(x = Year, y = factor(Vaccine, levels = rev(sort(unique(Vacci
     plot.margin = margin(5, 5, 5, 5)
   )
 
-ggsave(paste0(filepath, "usa-schedule-heatmap.png"), height=5, width=8, bg = "white")
+ggsave(paste0(filepath, country_select, "-schedule-heatmap.png"), height=5, width=8, bg = "white")
 
 
-# Get Denmark schedule, and apply fills
-denmark_sch <- who_schedules %>%
-  filter(Entity == "Denmark") %>% 
+# BY VACCINE
+
+vaccine_select <- "Hep A"
+
+# Select countries to compare
+select_countries <- c("Denmark", 
+                      "France",
+                      "United Kingdom of Great Britain and Northern Ireland",
+                      "United States of America", 
+                      "Australia",
+                      "Japan",
+                      "Sweden",
+                      "Netherlands (Kingdom of the)",
+                      "Norway",
+                      "New Zealand",
+                      "Germany",
+                      "Canada",
+                      "Spain",
+                      "Italy")
+
+vaccine_sch <- who_schedules %>%
+  filter(Vaccine == vaccine_select) %>% # !! Pick a vaccine
+  filter(Entity %in% select_countries) %>%
   complete( # Fill grid with all years, so blank years say not introduced
     Vaccine,
     Year = seq(year_range[1], year_range[2]),
     fill = list(Schedule = "Not introduced")
-  ) 
+  ) %>%
+  filter(!is.na(Entity)) %>%
+  mutate(
+    Entity = recode(
+      Entity,
+      "United Kingdom of Great Britain and Northern Ireland" = "United Kingdom",
+      "Netherlands (Kingdom of the)" = "Netherlands",
+    )
+  )
 
-# Plot heatmap
-ggplot(denmark_sch, aes(x = Year, y = factor(Vaccine, levels = rev(sort(unique(Vaccine)))), fill = Schedule)) +
+
+ggplot(vaccine_sch, aes(x = Year, y = factor(Entity, levels = rev(sort(unique(Entity)))), fill = Schedule)) +
   geom_tile(color = "white", linewidth = 0.2) +
   scale_x_continuous(breaks = scales::pretty_breaks()) +
   scale_fill_manual(values = schedule_cols,drop = FALSE) +
   labs(
-    title = "What's in the vaccination schedule in Denmark?",
+    title = paste0("Which countries have ", vaccine_select, " vaccines in their schedule?"),
     x = "Year",
     y = "",
     fill = "",
@@ -148,7 +178,6 @@ ggplot(denmark_sch, aes(x = Year, y = factor(Vaccine, levels = rev(sort(unique(V
     plot.margin = margin(5, 5, 5, 5)
   )
 
-ggsave(paste0(filepath, "denmark-schedule-heatmap.png"), height=5, width=8, bg = "white")
-
+ggsave(paste0(filepath, vaccine_select, "-schedule-heatmap.png"), height=5, width=8, bg = "white")
 
 
