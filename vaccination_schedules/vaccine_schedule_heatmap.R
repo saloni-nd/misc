@@ -5,7 +5,7 @@ filepath <- ""
 
 # Import all spreadsheets in the folder
 who_schedules <- list.files(
-  filepath,
+  paste0(filepath, "Data/"),
   pattern = "vaccine-schedule\\.xlsx$",
   full.names = TRUE
 ) %>%
@@ -65,7 +65,7 @@ who_schedules <- who_schedules %>%
   )
 
 
-write_csv(who_schedules, paste0(filepath, "vaccination_introduction_country.csv"))
+write_csv(who_schedules, paste0(filepath, "combined_vaccine_introduction.csv"))
 
 # Set colours
 schedule_cols <- c(
