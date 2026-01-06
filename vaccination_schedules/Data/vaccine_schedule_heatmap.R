@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readxl)
 
-filepath <- "/Users/saloni/Documents/Github/misc/vaccination_schedules/Data/"
+filepath <- ""
 
 # Import all spreadsheets in the folder
 who_schedules <- list.files(
@@ -63,6 +63,9 @@ who_schedules <- who_schedules %>%
       "Ap"          = "Pertussis (acellular)"
     )
   )
+
+
+write_csv(who_schedules, paste0(filepath, "vaccination_introduction_country.csv"))
 
 # Set colours
 schedule_cols <- c(
