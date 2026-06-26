@@ -19,6 +19,8 @@
 # fall in the vaccine arm: 0.5 under the null and 1/3 under 50%
 # efficacy. It then estimates the time to accrue those cases using an
 # exponential time-to-infection model with a constant monthly hazard.
+#
+# I used Claude to write this code before checking through the steps.
 # ---------------------------------------------------------------
 
 library(tidyverse)
